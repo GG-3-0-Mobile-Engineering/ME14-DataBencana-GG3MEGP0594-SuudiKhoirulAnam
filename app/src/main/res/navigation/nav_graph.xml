@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/nav_recent"
-        android:name="com.ferosburn.databencana.RecentFragment"
-        tools:layout="@layout/fragment_recent" />
+        android:name="com.ferosburn.databencana.RecentDisasterFragment"
+        tools:layout="@layout/fragment_recent_disaster" />
     <fragment
         android:id="@+id/nav_notification"
         android:name="com.ferosburn.databencana.NotificationFragment"

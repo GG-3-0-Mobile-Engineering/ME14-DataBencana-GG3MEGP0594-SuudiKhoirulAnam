@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ferosburn.databencana.databinding.FragmentRecentBinding
+import com.ferosburn.databencana.databinding.FragmentRecentDisasterBinding
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
-class RecentFragment : Fragment() {
-    private var _binding: FragmentRecentBinding? = null
+class RecentDisasterFragment : Fragment() {
+    private var _binding: FragmentRecentDisasterBinding? = null
     private val binding get() = _binding!!
     private lateinit var map: MapView
 
@@ -22,7 +22,7 @@ class RecentFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRecentBinding.inflate(inflater, container, false)
+        _binding = FragmentRecentDisasterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
