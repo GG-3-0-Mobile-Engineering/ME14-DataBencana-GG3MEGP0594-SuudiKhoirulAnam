@@ -17,6 +17,9 @@ private val retrofit = Retrofit.Builder()
 interface ReportService {
     @GET("reports/archive")
     suspend fun getReports(@Query("start") start: String, @Query("end") end: String): DataReport
+
+    @GET("reports")
+    suspend fun getRecentReports(@Query("timeperiod") timePeriod: Int): DataReport
 }
 
 object Report {
