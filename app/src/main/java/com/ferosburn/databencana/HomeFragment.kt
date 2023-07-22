@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ferosburn.databencana.databinding.FragmentRecentDisasterBinding
+import androidx.navigation.fragment.findNavController
+import com.ferosburn.databencana.databinding.FragmentHomeBinding
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
 class HomeFragment : Fragment() {
-    private var _binding: FragmentRecentDisasterBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var map: MapView
 
@@ -22,7 +23,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRecentDisasterBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // mapView binding
-        map = binding.mapViewRecent
+        map = binding.mapView
         // set map style/type/source
         map.apply {
             setTileSource(TileSourceFactory.OpenTopo)
@@ -57,6 +58,10 @@ class HomeFragment : Fragment() {
         map.apply {
             overlays.add(marker)
             invalidate()
+        }
+
+        binding.tvFilter.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_home_to_filterFragment)
         }
     }
 

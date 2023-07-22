@@ -5,4 +5,11 @@
     <string name="archive">Arsip</string>
     <string name="notification">Notifikasi</string>
     <string name="settings">Pengaturan</string>
+    <string name="disaster_filter">Filter Bencana</string>
+    <string name="disaster_type">Jenis Bencana</string>
+    <string name="start_time">Mulai Tanggal</string>
+    <string name="end_time">Tanggal Akhir</string>
+    <string name="region">Daerah</string>
+    <string name="province">Provinsi</string>
+    <string name="filter">Filter</string>
 </resources>

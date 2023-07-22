@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.ferosburn.databencana.HomeFragment"
-        tools:layout="@layout/fragment_recent_disaster" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_filterFragment"
+            app:destination="@id/filterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_notification"
         android:name="com.ferosburn.databencana.NotificationFragment"
@@ -19,4 +23,15 @@
         android:name="com.ferosburn.databencana.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.ferosburn.databencana.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_filterFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
