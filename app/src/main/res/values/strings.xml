@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Data Bencana</string>
     <string name="recent">Terkini</string>
+    <string name="home">Beranda</string>
     <string name="archive">Arsip</string>
     <string name="notification">Notifikasi</string>
     <string name="settings">Pengaturan</string>

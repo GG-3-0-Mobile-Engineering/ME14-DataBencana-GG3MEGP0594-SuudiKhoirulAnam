@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_recent">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/nav_recent"
-        android:name="com.ferosburn.databencana.RecentDisasterFragment"
+        android:id="@+id/nav_home"
+        android:name="com.ferosburn.databencana.HomeFragment"
         tools:layout="@layout/fragment_recent_disaster" />
     <fragment
         android:id="@+id/nav_notification"
