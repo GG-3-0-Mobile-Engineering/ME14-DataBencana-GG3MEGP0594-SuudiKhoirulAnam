@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -18,6 +19,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var map: MapView
 
+    private val viewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,39 +32,38 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         // mapView binding
         map = binding.mapView
+        val mapController = map.controller
         // set map style/type/source
         map.apply {
             setTileSource(TileSourceFactory.OpenTopo)
             setMultiTouchControls(true)
             @Suppress("DEPRECATION")
             setBuiltInZoomControls(false)
-            val mapController = controller
-            // set initial zoom,
-            // bigger number means zooms in, max ideal 15.0
-            mapController.setZoom(17.0)
-            // set initial position
-            val startPoint = GeoPoint(-7.792563, 110.365813)
-            mapController.setCenter(startPoint)
         }
-
-        // create pin
-        val marker = Marker(map)
-        marker.position = GeoPoint(-7.792563, 110.365813)
-        marker.icon = context?.getDrawable(R.drawable.ic_disaster)
-        marker.title = "Test Marker"
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-
-        // add pin on map
-        map.apply {
-            overlays.add(marker)
-            invalidate()
-        }
-
         binding.tvFilter.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_filterFragment)
+        }
+        viewModel.apply {
+            bbox.observe(viewLifecycleOwner) {
+                val avgLong = averageCoordinate(it[0], it[2])
+                val avgLat = averageCoordinate(it[1], it[3])
+                mapController.setCenter(GeoPoint(avgLat, avgLong))
+                mapController.setZoom(7.0)
+            }
+            listDisaster.observe(viewLifecycleOwner) {
+                map.overlays.clear()
+                it.map { itemDisaster ->
+                    val marker = Marker(map)
+                    marker.position = GeoPoint(itemDisaster.coordinates[1], itemDisaster.coordinates[0])
+                    marker.icon = context?.getDrawable(getDisasterIcon(itemDisaster.disasterType))
+                    marker.title = "Test Marker"
+                    marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+                    map.overlays.add(marker)
+                }
+                map.invalidate()
+            }
         }
     }
 
@@ -78,5 +80,21 @@ class HomeFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         map.onDetach()
+    }
+
+    private fun averageCoordinate(value1: Double, value2: Double): Double {
+        return (value1 + value2) / 2
+    }
+
+    private fun getDisasterIcon(disasterType: String): Int {
+        return when(disasterType) {
+            DisasterTypes.FLOOD.value -> R.drawable.ic_flood
+            DisasterTypes.EARTHQUAKE.value -> R.drawable.ic_earthquake
+            DisasterTypes.HAZE.value -> R.drawable.ic_haze
+            DisasterTypes.FIRE.value -> R.drawable.ic_fire
+            DisasterTypes.WIND.value -> R.drawable.ic_wind
+            DisasterTypes.VOLCANO.value -> R.drawable.ic_volcano
+            else -> R.drawable.ic_disaster
+        }
     }
 }
