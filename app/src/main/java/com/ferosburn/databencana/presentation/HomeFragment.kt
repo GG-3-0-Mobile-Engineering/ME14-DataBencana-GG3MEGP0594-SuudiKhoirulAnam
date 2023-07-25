@@ -35,16 +35,16 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // mapView binding
         map = binding.mapView
         val mapController = map.controller
-        // set map style/type/source
         map.apply {
             setTileSource(TileSourceFactory.OpenTopo)
             setMultiTouchControls(true)
             @Suppress("DEPRECATION")
             setBuiltInZoomControls(false)
         }
+        mapController.setCenter(GeoPoint(DEFAULT_LATITUDE, DEFAULT_LONGITUDE))
+        mapController.setZoom(DEFAULT_ZOOM_LEVEL)
         binding.tvFilter.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_filterFragment)
         }
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
                 val avgLong = averageCoordinate(it[0], it[2])
                 val avgLat = averageCoordinate(it[1], it[3])
                 mapController.setCenter(GeoPoint(avgLat, avgLong))
-                mapController.setZoom(7.0)
+                mapController.setZoom(calculateZoomLevel(it[0], it[2]))
             }
             listDisaster.observe(viewLifecycleOwner) {
                 map.overlays.clear()
@@ -90,6 +90,10 @@ class HomeFragment : Fragment() {
 
     private fun averageCoordinate(value1: Double, value2: Double): Double {
         return (value1 + value2) / 2
+    }
+
+    private fun calculateZoomLevel(minLong: Double, maxLong: Double): Double {
+        return (maxLong - minLong) * SLOPE + CONSTANTA
     }
 
     private fun getDisasterIcon(disasterType: String): Int {
@@ -154,5 +158,13 @@ class HomeFragment : Fragment() {
             Provinces.YOGYA.code -> Provinces.YOGYA.provinceName
             else -> getString(R.string.indonesia)
         }
+    }
+
+    companion object {
+        const val DEFAULT_LATITUDE: Double = -2.483383
+        const val DEFAULT_LONGITUDE: Double = 117.890285
+        const val DEFAULT_ZOOM_LEVEL: Double = 5.0
+        const val SLOPE: Double = -0.71
+        const val CONSTANTA: Double = 17.0
     }
 }
