@@ -1,4 +1,4 @@
-package com.ferosburn.databencana
+package com.ferosburn.databencana.data
 
 import com.squareup.moshi.Json
 
@@ -92,9 +92,9 @@ data class PropertyTags(
     @Json(name = "district_id")
     val districtId: Any?,
     @Json(name = "region_code")
-    val regionCode: String,
+    val regionCode: String?,
     @Json(name = "local_area_id")
     val localAreaId: String?,
     @Json(name = "instance_region_code")
-    val instanceRegionCode: String,
+    val instanceRegionCode: String?,
 )

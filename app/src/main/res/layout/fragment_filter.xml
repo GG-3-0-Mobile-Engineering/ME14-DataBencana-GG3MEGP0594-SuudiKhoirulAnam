@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".FilterFragment">
+    tools:context=".presentation.FilterFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -29,87 +29,86 @@
             android:layout_margin="24dp"
             app:cardCornerRadius="8dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:padding="24dp">
 
-                <TextView
-                    android:id="@+id/label_disaster_type"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/disaster_type"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/disaster_type"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:hint="@string/disaster_type">
 
-                <Spinner
-                    android:id="@+id/input_disaster_type"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/label_disaster_type"
-                    app:layout_constraintBottom_toBottomOf="@id/label_disaster_type"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
 
-                <TextView
-                    android:id="@+id/label_start_time"
-                    android:layout_width="wrap_content"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_start_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/start_time"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label_disaster_type" />
+                    android:hint="@string/start_time"
+                    app:endIconDrawable="@drawable/ic_pick_date"
+                    app:endIconMode="custom">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    app:layout_constraintTop_toTopOf="@id/label_start_time"
-                    app:layout_constraintBottom_toBottomOf="@id/label_start_time"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="date" />
 
-                <TextView
-                    android:id="@+id/label_end_time"
-                    android:layout_width="wrap_content"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_end_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/end_time"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label_start_time" />
+                    android:hint="@string/end_time"
+                    app:endIconDrawable="@drawable/ic_pick_date"
+                    app:endIconMode="custom">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    app:layout_constraintTop_toTopOf="@id/label_end_time"
-                    app:layout_constraintBottom_toBottomOf="@id/label_end_time"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="date" />
 
-                <TextView
-                    android:id="@+id/label_region"
-                    android:layout_width="wrap_content"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_region"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/province"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label_end_time" />
+                    android:hint="@string/province">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="@id/label_region"
-                    app:layout_constraintBottom_toBottomOf="@id/label_region"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/input_region"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/btn_filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/filter"
+                    android:layout_gravity="end"
                     android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label_region"/>
+                    android:text="@string/filter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
