@@ -13,4 +13,9 @@
     <string name="province">Provinsi</string>
     <string name="filter">Filter</string>
     <string name="indonesia">Indonesia</string>
+    <string name="province_is_not_found">Provinsi tidak ditemukan!\nTips: Pilih provinsi yang muncul di rekomendasi ketika mengetik</string>
+    <string name="start_date_should_not_be_empty">Tanggal awal tidak boleh kosong!</string>
+    <string name="end_date_should_not_be_empty">Tanggal akhir tidak boleh kosong!</string>
+    <string name="end_date_should_not_be_bigger_than_today">Tanggal akhir tidak boleh melebihi tanggal hari ini!</string>
+    <string name="start_date_should_not_be_bigger_than_end_date">Tanggal awal tidak boleh melebihi tanggal akhir!</string>
 </resources>

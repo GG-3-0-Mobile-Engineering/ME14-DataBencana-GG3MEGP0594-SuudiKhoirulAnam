@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ferosburn.databencana.databinding.FragmentNotificationBinding
 
-const val TAG = "response"
-
 class NotificationFragment : Fragment() {
     private var _binding: FragmentNotificationBinding? = null
     private val binding get() = _binding!!
