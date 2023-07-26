@@ -16,10 +16,18 @@ private val retrofit = Retrofit.Builder()
 
 interface ReportService {
     @GET("reports/archive")
-    suspend fun getReports(@Query("start") start: String, @Query("end") end: String): DataReport
+    suspend fun getReports(
+        @Query("start") start: String,
+        @Query("end") end: String,
+        @Query("city") provinceCode: String?
+    ): DataReport
 
     @GET("reports")
-    suspend fun getRecentReports(@Query("timeperiod") timePeriod: Int): DataReport
+    suspend fun getRecentReports(
+        @Query("timeperiod") timePeriod: Int,
+        @Query("admin") provinceCode: String?,
+        @Query("disaster") disasterValue: String?
+    ): DataReport
 }
 
 object Report {

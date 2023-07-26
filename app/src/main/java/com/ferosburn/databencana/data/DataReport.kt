@@ -4,7 +4,8 @@ import com.squareup.moshi.Json
 
 data class DataReport(
     val statusCode: Int,
-    val result: ResultReport,
+    val result: ResultReport?,
+    val message: String?,
 )
 
 data class ResultReport(

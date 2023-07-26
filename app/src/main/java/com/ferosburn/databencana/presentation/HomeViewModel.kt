@@ -22,25 +22,25 @@ class HomeViewModel : ViewModel() {
     val bbox: LiveData<List<Double>> = _bbox
     val status: LiveData<DataStatus> = _status
 
-    init {
-        fetchDisasterData()
-    }
-
-    private fun fetchDisasterData() {
+    fun fetchDisasterData() {
         viewModelScope.launch {
             _status.value = DataStatus.LOADING
             try {
-                _disasterData.value = Report.retrofitService.getRecentReports(604800)
-                _listDisaster.value = disasterData.value?.result?.objectReport?.output?.geometries?.map {
-                    DisasterModel(
-                        pkey = it.properties.pkey,
-                        createdAt = it.properties.createdAt,
-                        imageUrl = it.properties.imageUrl,
-                        disasterType = it.properties.disasterType,
-                        instanceRegionCode = it.properties.propertyTags.instanceRegionCode ?: "",
-                        coordinates = it.coordinates
-                    )
-                }
+                _disasterData.value =
+                    Report.retrofitService.getRecentReports(DEFAULT_TIME_PERIOD, null, null)
+                _listDisaster.value = listOf()
+                _listDisaster.value =
+                    disasterData.value?.result?.objectReport?.output?.geometries?.map {
+                        DisasterModel(
+                            pkey = it.properties.pkey,
+                            createdAt = it.properties.createdAt,
+                            imageUrl = it.properties.imageUrl,
+                            disasterType = it.properties.disasterType,
+                            instanceRegionCode = it.properties.propertyTags.instanceRegionCode
+                                ?: "",
+                            coordinates = it.coordinates
+                        )
+                    }
                 _bbox.value = disasterData.value?.result?.bbox
                 _status.value = DataStatus.DONE
             } catch (e: Exception) {
@@ -48,6 +48,52 @@ class HomeViewModel : ViewModel() {
                 _status.value = DataStatus.ERROR
             }
         }
+    }
+
+    fun fetchFilteredList(
+        disasterValue: String? = null,
+        startDate: String? = null,
+        endDate: String? = null,
+        provinceCode: String? = null
+    ) {
+        viewModelScope.launch {
+            _status.value = DataStatus.LOADING
+            try {
+                if (startDate.isNullOrBlank() || endDate.isNullOrBlank()) {
+                    _disasterData.value =
+                        Report.retrofitService.getRecentReports(
+                            DEFAULT_TIME_PERIOD,
+                            provinceCode,
+                            disasterValue
+                        )
+                } else {
+                    _disasterData.value =
+                        Report.retrofitService.getReports(startDate, endDate, provinceCode)
+                }
+                _listDisaster.value = listOf()
+                _listDisaster.value =
+                    disasterData.value?.result?.objectReport?.output?.geometries?.map {
+                        DisasterModel(
+                            pkey = it.properties.pkey,
+                            createdAt = it.properties.createdAt,
+                            imageUrl = it.properties.imageUrl,
+                            disasterType = it.properties.disasterType,
+                            instanceRegionCode = it.properties.propertyTags.instanceRegionCode
+                                ?: "",
+                            coordinates = it.coordinates
+                        )
+                    }
+                _bbox.value = disasterData.value?.result?.bbox
+                _status.value = DataStatus.DONE
+            } catch (e: Exception) {
+                _listDisaster.value = listOf()
+                _status.value = DataStatus.ERROR
+            }
+        }
+    }
+
+    companion object {
+        const val DEFAULT_TIME_PERIOD = 604800
     }
 
 }
