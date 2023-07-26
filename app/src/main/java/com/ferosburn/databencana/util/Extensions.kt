@@ -27,9 +27,12 @@ fun String.disasterNameToDisasterTypes(): DisasterTypes? {
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun String.localDateToFormattedDateTime(initialPattern: String): String? {
-    val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))
-        .atStartOfDay().atOffset(ZoneOffset.UTC)
-    return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
+    if (this.isNotBlank()) {
+        val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))
+            .atStartOfDay().atOffset(ZoneOffset.UTC)
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
+    }
+    return null
 }
 
 fun TextInputLayout.setInputError(message: String) {

@@ -23,7 +23,6 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
-import kotlin.math.pow
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -137,7 +136,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun calculateZoomLevel(minLong: Double, maxLong: Double): Double {
-        return CURVATURE_INITIAL_VALUE * CURVATURE_DEGREE.pow(-(maxLong - minLong)) + DEFAULT_ZOOM_LEVEL
+        return CURVATURE_DEGREE / ((maxLong - minLong) + CURVATURE_X_OFFSET) + CURVATURE_INITIAL_VALUE
     }
 
     private fun getDisasterIcon(disasterType: String): Int {
@@ -156,7 +155,8 @@ class HomeFragment : Fragment() {
         const val DEFAULT_LATITUDE: Double = -2.483383
         const val DEFAULT_LONGITUDE: Double = 117.890285
         const val DEFAULT_ZOOM_LEVEL: Double = 5.0
-        const val CURVATURE_INITIAL_VALUE: Double = 10.0
-        const val CURVATURE_DEGREE: Double = 1.24
+        const val CURVATURE_INITIAL_VALUE: Double = 3.0
+        const val CURVATURE_DEGREE: Double = 50.0
+        const val CURVATURE_X_OFFSET: Double = 3.6
     }
 }

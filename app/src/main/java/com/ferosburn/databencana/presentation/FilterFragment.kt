@@ -166,6 +166,7 @@ class FilterFragment : Fragment() {
                 ) > LocalDate.now()
             ) {
                 inputLayoutEndTime.setInputError(getString(R.string.end_date_should_not_be_bigger_than_today))
+                return false
             }
             if (LocalDate.parse(
                     inputStartTime.text.toString(),
@@ -176,6 +177,7 @@ class FilterFragment : Fragment() {
                 )
             ) {
                 inputLayoutStartTime.setInputError(getString(R.string.start_date_should_not_be_bigger_than_end_date))
+                return false
             }
             if ((LocalDate.parse(
                     inputEndTime.text.toString(),
@@ -186,8 +188,8 @@ class FilterFragment : Fragment() {
                 ).toEpochDay()) * 60 * 60 * 24 >= 18748800
             ) {
                 inputLayoutStartTime.setInputError(getString(R.string.time_difference_not_more_than_217_days))
+                return false
             }
-            return false
         }
         return true
     }
