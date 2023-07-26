@@ -4,7 +4,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.ferosburn.databencana.data.DisasterTypes
 import com.ferosburn.databencana.data.Provinces
+import com.google.android.material.textfield.TextInputLayout
 import java.time.LocalDate
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 fun String.provinceNameToProvinces(): Provinces? {
@@ -24,19 +26,13 @@ fun String.disasterNameToDisasterTypes(): DisasterTypes? {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun String.changeDateFormat(oldPattern: String, newPattern: String): String {
-    val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(oldPattern))
-    return date.format(DateTimeFormatter.ofPattern(newPattern))
-}
-
-
-@RequiresApi(Build.VERSION_CODES.O)
-fun String.toFormattedDate(initialPattern: String): String? {
+fun String.localDateToFormattedDateTime(initialPattern: String): String? {
     val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))
+        .atStartOfDay().atOffset(ZoneOffset.UTC)
     return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun String.toDatetime(initialPattern: String): LocalDate {
-    return LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))
+fun TextInputLayout.setInputError(message: String) {
+    isErrorEnabled = true
+    error = message
 }

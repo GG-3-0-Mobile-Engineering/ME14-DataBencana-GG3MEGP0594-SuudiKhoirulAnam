@@ -92,6 +92,10 @@ class HomeViewModel : ViewModel() {
         }
     }
 
+    fun isListEmpty(): Boolean {
+        return _listDisaster.value.isNullOrEmpty()
+    }
+
     companion object {
         const val DEFAULT_TIME_PERIOD = 604800
     }

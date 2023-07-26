@@ -18,4 +18,5 @@
     <string name="end_date_should_not_be_empty">Tanggal akhir tidak boleh kosong!</string>
     <string name="end_date_should_not_be_bigger_than_today">Tanggal akhir tidak boleh melebihi tanggal hari ini!</string>
     <string name="start_date_should_not_be_bigger_than_end_date">Tanggal awal tidak boleh melebihi tanggal akhir!</string>
+    <string name="time_difference_not_more_than_217_days">Selisih tidak boleh lebih dari 217 hari!</string>
 </resources>

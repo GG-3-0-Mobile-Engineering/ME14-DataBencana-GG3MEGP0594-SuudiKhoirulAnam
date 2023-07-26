@@ -22,6 +22,7 @@ import com.ferosburn.databencana.databinding.FragmentFilterBinding
 import com.ferosburn.databencana.util.KeyConstant
 import com.ferosburn.databencana.util.disasterNameToDisasterTypes
 import com.ferosburn.databencana.util.provinceNameToProvinces
+import com.ferosburn.databencana.util.setInputError
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -144,25 +145,16 @@ class FilterFragment : Fragment() {
         if (inputRegion.text.isNotBlank() && inputRegion.text.toString()
                 .provinceNameToProvinces() == null
         ) {
-            inputLayoutRegion.apply {
-                isErrorEnabled = true
-                error = context.getString(R.string.province_is_not_found)
-            }
+            inputLayoutRegion.setInputError(getString(R.string.province_is_not_found))
             return false
         } else if (inputStartTime.text.toString().isNotBlank() xor inputEndTime.text.toString()
                 .isNotBlank()
         ) {
             if (inputStartTime.text.isNullOrBlank()) {
-                inputLayoutStartTime.apply {
-                    isErrorEnabled = true
-                    error = context.getString(R.string.start_date_should_not_be_empty)
-                }
+                inputLayoutStartTime.setInputError(getString(R.string.start_date_should_not_be_empty))
             }
             if (inputEndTime.text.isNullOrBlank()) {
-                inputLayoutEndTime.apply {
-                    isErrorEnabled = true
-                    error = context.getString(R.string.end_date_should_not_be_empty)
-                }
+                inputLayoutEndTime.setInputError(getString(R.string.end_date_should_not_be_empty))
             }
             return false
         } else if (inputStartTime.text.toString().isNotBlank() && inputEndTime.text.toString()
@@ -173,11 +165,7 @@ class FilterFragment : Fragment() {
                     DateTimeFormatter.ofPattern("dd-MM-yyyy")
                 ) > LocalDate.now()
             ) {
-                inputLayoutEndTime.apply {
-                    isErrorEnabled = true
-                    error = context.getString(R.string.end_date_should_not_be_bigger_than_today)
-                }
-                return false
+                inputLayoutEndTime.setInputError(getString(R.string.end_date_should_not_be_bigger_than_today))
             }
             if (LocalDate.parse(
                     inputStartTime.text.toString(),
@@ -187,12 +175,19 @@ class FilterFragment : Fragment() {
                     DateTimeFormatter.ofPattern("dd-MM-yyyy")
                 )
             ) {
-                inputLayoutStartTime.apply {
-                    isErrorEnabled = true
-                    error = context.getString(R.string.start_date_should_not_be_bigger_than_end_date)
-                }
-                return false
+                inputLayoutStartTime.setInputError(getString(R.string.start_date_should_not_be_bigger_than_end_date))
             }
+            if ((LocalDate.parse(
+                    inputEndTime.text.toString(),
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                ).toEpochDay() - LocalDate.parse(
+                    inputStartTime.text.toString(),
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy")
+                ).toEpochDay()) * 60 * 60 * 24 >= 18748800
+            ) {
+                inputLayoutStartTime.setInputError(getString(R.string.time_difference_not_more_than_217_days))
+            }
+            return false
         }
         return true
     }

@@ -16,8 +16,8 @@ import com.ferosburn.databencana.data.DisasterTypes
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
 import com.ferosburn.databencana.util.KeyConstant
 import com.ferosburn.databencana.util.disasterValueToDisasterTypes
+import com.ferosburn.databencana.util.localDateToFormattedDateTime
 import com.ferosburn.databencana.util.provinceCodeToProvinces
-import com.ferosburn.databencana.util.toFormattedDate
 import org.osmdroid.api.IMapController
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -67,17 +67,16 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)
-        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)?.toFormattedDate("dd-MM-yyyy")
-        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)?.toFormattedDate("dd-MM-yyyy")
+        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)?.localDateToFormattedDateTime("dd-MM-yyyy")
+        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)?.localDateToFormattedDateTime("dd-MM-yyyy")
         val province = arguments?.getString(KeyConstant.PROVINCE_FILTER)
 
-        if (!disasterType.isNullOrBlank() || (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) || !province.isNullOrBlank()) {
-            viewModel.fetchFilteredList(disasterType, startDate, endDate, province)
-        } else {
-            viewModel.fetchDisasterData()
-        }
-
         viewModel.apply {
+            if (!disasterType.isNullOrBlank() || (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) || !province.isNullOrBlank()) {
+                fetchFilteredList(disasterType, startDate, endDate, province)
+            } else if (isListEmpty()) {
+                fetchDisasterData()
+            }
             status.observe(viewLifecycleOwner) {
                 when (it) {
                     DataStatus.ERROR -> Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT)
