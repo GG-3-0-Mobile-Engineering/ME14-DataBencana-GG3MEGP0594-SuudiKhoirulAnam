@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferosburn.databencana.R
 import com.ferosburn.databencana.data.DisasterTypes
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
@@ -18,6 +19,7 @@ import com.ferosburn.databencana.util.KeyConstant
 import com.ferosburn.databencana.util.disasterValueToDisasterTypes
 import com.ferosburn.databencana.util.localDateToFormattedDateTime
 import com.ferosburn.databencana.util.provinceCodeToProvinces
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.osmdroid.api.IMapController
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -31,6 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var mapController: IMapController
     private var avgLong: Double = DEFAULT_LONGITUDE
     private var avgLat: Double = DEFAULT_LATITUDE
+    private val disasterListAdapter: DisasterListAdapter = DisasterListAdapter()
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -59,6 +62,17 @@ class HomeFragment : Fragment() {
         binding.tvFilter.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_filterFragment)
         }
+        binding.initBottomSheet()
+    }
+
+    private fun FragmentHomeBinding.initBottomSheet() {
+        BottomSheetBehavior.from(disasterListBottomSheet.root).apply {
+            peekHeight = 380
+            this.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+        disasterListBottomSheet.rvListDisaster.adapter = disasterListAdapter
+        disasterListBottomSheet.rvListDisaster.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -66,8 +80,10 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)
-        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)?.localDateToFormattedDateTime("dd-MM-yyyy")
-        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)?.localDateToFormattedDateTime("dd-MM-yyyy")
+        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)
+            ?.localDateToFormattedDateTime("dd-MM-yyyy")
+        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)
+            ?.localDateToFormattedDateTime("dd-MM-yyyy")
         val province = arguments?.getString(KeyConstant.PROVINCE_FILTER)
 
         viewModel.apply {
@@ -89,10 +105,14 @@ class HomeFragment : Fragment() {
                             avgLong = averageCoordinate(coordinates[0], coordinates[2])
                             avgLat = averageCoordinate(coordinates[1], coordinates[3])
                             mapController.setCenter(GeoPoint(avgLat, avgLong))
-                            mapController.zoomTo(calculateZoomLevel(coordinates[0], coordinates[2]), 1000)
+                            mapController.zoomTo(
+                                calculateZoomLevel(coordinates[0], coordinates[2]),
+                                1000
+                            )
                         }
                         listDisaster.observe(viewLifecycleOwner) { list ->
                             map.overlays.clear()
+                            disasterListAdapter.submitList(list)
                             list.map { itemDisaster ->
                                 val marker = Marker(map)
                                 marker.position =
@@ -129,6 +149,11 @@ class HomeFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         map.onDetach()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun averageCoordinate(value1: Double, value2: Double): Double {

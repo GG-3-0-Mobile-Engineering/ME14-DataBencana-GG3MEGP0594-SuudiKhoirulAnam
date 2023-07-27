@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.HomeFragment">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_filter"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="16dp"
-            android:padding="16dp"
-            android:text="@string/choose_filter"
-            app:drawableStartCompat="@drawable/ic_filter" />
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:text="@string/choose_filter"
+                app:drawableStartCompat="@drawable/ic_filter" />
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/map_view"
+        </androidx.cardview.widget.CardView>
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/disaster_list_bottom_sheet"
+        layout="@layout/disaster_list_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

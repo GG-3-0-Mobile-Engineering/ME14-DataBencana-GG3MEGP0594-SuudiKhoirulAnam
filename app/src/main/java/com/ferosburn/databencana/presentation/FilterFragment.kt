@@ -194,6 +194,11 @@ class FilterFragment : Fragment() {
         return true
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun setOfDisasterTypes(): Set<DisasterTypes> {
         return setOf(
             DisasterTypes.ALL,

@@ -19,4 +19,9 @@ class SettingsFragment: Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
