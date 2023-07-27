@@ -48,28 +48,57 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initMap()
+        binding.apply {
+            initAdapter()
+        }
+        binding.tvFilter.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_home_to_filterFragment)
+        }
+        BottomSheetBehavior.from(binding.disasterListBottomSheet.root)
+            .apply {
+                peekHeight = 0
+                this.state = BottomSheetBehavior.STATE_HIDDEN
+                addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                    override fun onStateChanged(bottomSheet: View, newState: Int) {
+                        when (state) {
+                            BottomSheetBehavior.STATE_COLLAPSED -> {
+                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 24f
+                                binding.disasterListBottomSheet.tvTitle.visibility = View.GONE
+                                binding.cvFilter.visibility = View.VISIBLE
+                            }
+                            BottomSheetBehavior.STATE_DRAGGING -> {
+                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 24f
+                                binding.disasterListBottomSheet.tvTitle.visibility = View.VISIBLE
+                                binding.cvFilter.visibility = View.VISIBLE
+                            }
+                            BottomSheetBehavior.STATE_EXPANDED -> {
+                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 0f
+                                binding.disasterListBottomSheet.tvTitle.visibility = View.VISIBLE
+                                binding.cvFilter.visibility = View.GONE
+                            }
+                        }
+                    }
+
+                    override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+                })
+            }
+    }
+
+    private fun initMap() {
         map = binding.mapView
         mapController = map.controller
         map.apply {
             setTileSource(TileSourceFactory.OpenTopo)
             setMultiTouchControls(true)
             @Suppress("DEPRECATION")
-            setBuiltInZoomControls(false)
+            (setBuiltInZoomControls(false))
         }
         mapController.setCenter(GeoPoint(DEFAULT_LATITUDE, DEFAULT_LONGITUDE))
         mapController.setZoom(DEFAULT_ZOOM_LEVEL)
-
-        binding.tvFilter.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_home_to_filterFragment)
-        }
-        binding.initBottomSheet()
     }
 
-    private fun FragmentHomeBinding.initBottomSheet() {
-        BottomSheetBehavior.from(disasterListBottomSheet.root).apply {
-            peekHeight = 380
-            this.state = BottomSheetBehavior.STATE_COLLAPSED
-        }
+    private fun FragmentHomeBinding.initAdapter() {
         disasterListBottomSheet.rvListDisaster.adapter = disasterListAdapter
         disasterListBottomSheet.rvListDisaster.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -94,13 +123,33 @@ class HomeFragment : Fragment() {
             }
             status.observe(viewLifecycleOwner) {
                 when (it) {
-                    DataStatus.ERROR -> Toast.makeText(context, "Server Error", Toast.LENGTH_SHORT)
-                        .show()
+                    DataStatus.ERROR -> {
+                        disasterData.observe(viewLifecycleOwner) {data ->
+                            when (data.statusCode) {
+                                in 500..599 -> {
+                                    Toast.makeText(context, "Server Error", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+                                in 400..499 -> {
+                                    Toast.makeText(context, "Something Wrong", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+                                else -> {
+                                    Toast.makeText(context, "Can Not Communicate With Server", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+                            }
+                        }
+                    }
 
-                    DataStatus.LOADING -> Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT)
-                        .show()
+                    DataStatus.LOADING -> {
+                        Toast.makeText(context, "Loading ...", Toast.LENGTH_SHORT)
+                            .show()
+                    }
 
                     DataStatus.DONE -> {
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT)
+                            .show()
                         bbox.observe(viewLifecycleOwner) { coordinates ->
                             avgLong = averageCoordinate(coordinates[0], coordinates[2])
                             avgLat = averageCoordinate(coordinates[1], coordinates[3])
@@ -111,6 +160,19 @@ class HomeFragment : Fragment() {
                             )
                         }
                         listDisaster.observe(viewLifecycleOwner) { list ->
+                            if (list.isEmpty()) {
+                                BottomSheetBehavior.from(binding.disasterListBottomSheet.root)
+                                    .apply {
+                                        peekHeight = 0
+                                        this.state = BottomSheetBehavior.STATE_HIDDEN
+                                    }
+                            } else {
+                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.visibility = View.VISIBLE
+                                BottomSheetBehavior.from(binding.disasterListBottomSheet.root).apply {
+                                    peekHeight = 150
+                                    this.state = BottomSheetBehavior.STATE_COLLAPSED
+                                }
+                            }
                             map.overlays.clear()
                             disasterListAdapter.submitList(list)
                             list.map { itemDisaster ->

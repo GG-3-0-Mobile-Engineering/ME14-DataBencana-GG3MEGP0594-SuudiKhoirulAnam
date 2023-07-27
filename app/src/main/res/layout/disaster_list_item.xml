@@ -42,28 +42,12 @@
                     android:layout_height="wrap_content"
                     tools:text="Provinsi" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/tv_disaster_time"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/tv_disaster_coordinates"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:text="Koordinat" />
-
-                    <TextView
-                        android:id="@+id/tv_disaster_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:text="Waktu" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|end"
+                    tools:text="Waktu" />
 
             </LinearLayout>
 

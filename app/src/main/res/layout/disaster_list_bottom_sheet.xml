@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_disaster_list_bottom_sheet"
     app:cardCornerRadius="24dp">
 
     <LinearLayout
@@ -21,22 +22,26 @@
             app:cardCornerRadius="8dp" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="36dp"
+            android:layout_marginTop="36dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@string/disaster_list"
             android:textAppearance="?attr/textAppearanceHeadline5"
             tools:text="Angin Kencang di Kep. Bangka Belitung" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="36dp"
             android:id="@+id/rv_list_disaster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:clipToPadding="false"/>
 
     </LinearLayout>

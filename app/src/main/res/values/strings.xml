@@ -22,4 +22,5 @@
     <string name="choose_filter">Pilih Tipe Bencana, Lokasi, dan Periode</string>
     <string name="disaster_data_is_empty">Tidak ada data bencana</string>
     <string name="profile">Profil</string>
+    <string name="disaster_list">Daftar Bencana</string>
 </resources>

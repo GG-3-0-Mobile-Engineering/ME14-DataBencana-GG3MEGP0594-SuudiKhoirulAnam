@@ -15,6 +15,7 @@ import com.ferosburn.databencana.util.disasterValueToDisasterTypes
 import com.ferosburn.databencana.util.provinceCodeToProvinces
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class DisasterListAdapter :
     ListAdapter<DisasterModel, DisasterListAdapter.DisasterListViewHolder>(DiffCallback) {
@@ -28,11 +29,15 @@ class DisasterListAdapter :
                     placeholder(R.drawable.ic_disaster_placeholder)
                     error(R.drawable.ic_disaster_placeholder)
                 }
-                tvDisasterCoordinates.text = disasterItem.coordinates.let { "${it[0]}\n${it[1]}" }
                 tvDisasterTime.text = LocalDateTime.parse(
                     disasterItem.createdAt,
                     DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                )?.let { "${it.dayOfWeek}, ${it.dayOfMonth} ${it.month} ${it.year}\n${it.hour}:${it.minute}" }
+                ).format(
+                    DateTimeFormatter.ofPattern(
+                        "cccc, d LLLL yyyy'\n'HH:mm:ss",
+                        Locale.forLanguageTag("id")
+                    )
+                )
                 tvDisasterType.text =
                     disasterItem.disasterType.disasterValueToDisasterTypes()?.disasterName
                 tvProvince.text =
@@ -47,7 +52,7 @@ class DisasterListAdapter :
         }
 
         override fun areContentsTheSame(oldItem: DisasterModel, newItem: DisasterModel): Boolean {
-            return oldItem.coordinates == newItem.coordinates
+            return oldItem == newItem
         }
     }
 
@@ -57,7 +62,6 @@ class DisasterListAdapter :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DisasterListViewHolder, position: Int) {
-        val disasterItem = getItem(position)
-        holder.bind(disasterItem)
+        holder.bind(getItem(position))
     }
 }

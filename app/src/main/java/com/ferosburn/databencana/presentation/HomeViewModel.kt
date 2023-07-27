@@ -22,12 +22,15 @@ class HomeViewModel : ViewModel() {
     val bbox: LiveData<List<Double>> = _bbox
     val status: LiveData<DataStatus> = _status
 
+    // max number of day = 7
+    private val numberOfDay = 2
+
     fun fetchDisasterData() {
         viewModelScope.launch {
             _status.value = DataStatus.LOADING
             try {
                 _disasterData.value =
-                    Report.retrofitService.getRecentReports(DEFAULT_TIME_PERIOD, null, null)
+                    Report.retrofitService.getRecentReports(DAY_TIME_PERIOD * numberOfDay, null, null)
                 _listDisaster.value = listOf()
                 _listDisaster.value =
                     disasterData.value?.result?.objectReport?.output?.geometries?.map {
@@ -62,7 +65,7 @@ class HomeViewModel : ViewModel() {
                 if (startDate.isNullOrBlank() || endDate.isNullOrBlank()) {
                     _disasterData.value =
                         Report.retrofitService.getRecentReports(
-                            DEFAULT_TIME_PERIOD,
+                            DAY_TIME_PERIOD * numberOfDay,
                             provinceCode,
                             disasterValue
                         )
@@ -97,7 +100,8 @@ class HomeViewModel : ViewModel() {
     }
 
     companion object {
-        const val DEFAULT_TIME_PERIOD = 604800
+        const val WEEK_TIME_PERIOD = 604800
+        const val DAY_TIME_PERIOD = 86400
     }
 
 }
