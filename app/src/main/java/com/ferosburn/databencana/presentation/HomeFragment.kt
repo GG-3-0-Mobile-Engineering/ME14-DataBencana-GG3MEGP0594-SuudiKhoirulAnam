@@ -77,6 +77,7 @@ class HomeFragment : Fragment() {
                                 binding.disasterListBottomSheet.tvTitle.visibility = View.VISIBLE
                                 binding.cvFilter.visibility = View.GONE
                             }
+                            else -> return
                         }
                     }
 
@@ -127,15 +128,15 @@ class HomeFragment : Fragment() {
                         disasterData.observe(viewLifecycleOwner) {data ->
                             when (data.statusCode) {
                                 in 500..599 -> {
-                                    Toast.makeText(context, "Server Error", Toast.LENGTH_LONG)
+                                    Toast.makeText(context, "Server Bermasalah", Toast.LENGTH_LONG)
                                         .show()
                                 }
                                 in 400..499 -> {
-                                    Toast.makeText(context, "Something Wrong", Toast.LENGTH_LONG)
+                                    Toast.makeText(context, "Ada Kesalahan Aplikasi", Toast.LENGTH_LONG)
                                         .show()
                                 }
                                 else -> {
-                                    Toast.makeText(context, "Can Not Communicate With Server", Toast.LENGTH_LONG)
+                                    Toast.makeText(context, "Tidak Dapat Terhubung Ke Server", Toast.LENGTH_LONG)
                                         .show()
                                 }
                             }
@@ -143,12 +144,12 @@ class HomeFragment : Fragment() {
                     }
 
                     DataStatus.LOADING -> {
-                        Toast.makeText(context, "Loading ...", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
                             .show()
                     }
 
                     DataStatus.DONE -> {
-                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT)
                             .show()
                         bbox.observe(viewLifecycleOwner) { coordinates ->
                             avgLong = averageCoordinate(coordinates[0], coordinates[2])
@@ -161,6 +162,8 @@ class HomeFragment : Fragment() {
                         }
                         listDisaster.observe(viewLifecycleOwner) { list ->
                             if (list.isEmpty()) {
+                                Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
+                                    .show()
                                 BottomSheetBehavior.from(binding.disasterListBottomSheet.root)
                                     .apply {
                                         peekHeight = 0
@@ -206,11 +209,6 @@ class HomeFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         map.onPause()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        map.onDetach()
     }
 
     override fun onDestroyView() {

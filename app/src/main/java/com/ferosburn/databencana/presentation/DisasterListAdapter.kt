@@ -26,8 +26,8 @@ class DisasterListAdapter :
         fun bind(disasterItem: DisasterModel) {
             binding.apply {
                 ivDisaster.load(disasterItem.imageUrl) {
-                    placeholder(R.drawable.ic_disaster_placeholder)
-                    error(R.drawable.ic_disaster_placeholder)
+                    placeholder(R.drawable.img_disaster_placeholder)
+                    error(R.drawable.img_disaster_placeholder)
                 }
                 tvDisasterTime.text = LocalDateTime.parse(
                     disasterItem.createdAt,

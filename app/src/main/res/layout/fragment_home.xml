@@ -32,7 +32,8 @@
                 android:gravity="center_vertical"
                 android:padding="16dp"
                 android:text="@string/choose_filter"
-                app:drawableStartCompat="@drawable/ic_filter" />
+                app:drawableStartCompat="@drawable/ic_filter"
+                app:drawableTint="?colorOnSecondaryContainer"/>
 
         </androidx.cardview.widget.CardView>
 

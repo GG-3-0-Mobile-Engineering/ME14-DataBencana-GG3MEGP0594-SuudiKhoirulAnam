@@ -86,6 +86,9 @@ class HomeViewModel : ViewModel() {
                             coordinates = it.coordinates
                         )
                     }
+                if ((!startDate.isNullOrBlank() || !endDate.isNullOrBlank()) && !disasterValue.isNullOrBlank()) {
+                    filterByDisasterType(disasterValue)
+                }
                 _bbox.value = disasterData.value?.result?.bbox
                 _status.value = DataStatus.DONE
             } catch (e: Exception) {
@@ -97,6 +100,10 @@ class HomeViewModel : ViewModel() {
 
     fun isListEmpty(): Boolean {
         return _listDisaster.value.isNullOrEmpty()
+    }
+
+    private fun filterByDisasterType(disasterType: String) {
+        _listDisaster.value = _listDisaster.value?.filter { item -> item.disasterType == disasterType }
     }
 
     companion object {

@@ -19,7 +19,7 @@ interface ReportService {
     suspend fun getReports(
         @Query("start") start: String,
         @Query("end") end: String,
-        @Query("city") provinceCode: String?
+        @Query("admin") provinceCode: String?
     ): DataReport
 
     @GET("reports")

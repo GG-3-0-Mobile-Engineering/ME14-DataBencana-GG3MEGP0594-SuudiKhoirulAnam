@@ -1,17 +1,24 @@
 package com.ferosburn.databencana
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ferosburn.databencana.databinding.ActivityMainBinding
+import com.ferosburn.databencana.util.KeyConstant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sharedPreferences = getSharedPreferences(KeyConstant.PREFERENCE, Context.MODE_PRIVATE)
+        AppCompatDelegate.setDefaultNightMode(sharedPreferences.getInt(KeyConstant.THEME, AppCompatDelegate.MODE_NIGHT_NO))
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

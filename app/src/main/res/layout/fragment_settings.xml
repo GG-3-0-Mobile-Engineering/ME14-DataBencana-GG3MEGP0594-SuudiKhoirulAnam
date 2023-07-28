@@ -17,17 +17,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="?attr/actionBarSize">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/settings" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </FrameLayout>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_dark_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:text="@string/dark_mode"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
