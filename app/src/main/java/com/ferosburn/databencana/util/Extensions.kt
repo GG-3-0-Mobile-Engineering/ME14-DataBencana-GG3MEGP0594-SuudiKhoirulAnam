@@ -1,7 +1,5 @@
 package com.ferosburn.databencana.util
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.ferosburn.databencana.data.DisasterTypes
 import com.ferosburn.databencana.data.Provinces
 import com.google.android.material.textfield.TextInputLayout
@@ -25,7 +23,6 @@ fun String.disasterNameToDisasterTypes(): DisasterTypes? {
     return DisasterTypes.values().firstOrNull() { it.disasterName == this }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun String.localDateToFormattedDateTime(initialPattern: String): String? {
     if (this.isNotBlank()) {
         val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))

@@ -1,9 +1,7 @@
 package com.ferosburn.databencana.presentation
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +20,6 @@ class DisasterListAdapter :
     class DisasterListViewHolder(
         private var binding: DisasterListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(disasterItem: DisasterModel) {
             binding.apply {
                 ivDisaster.load(disasterItem.imageUrl) {
@@ -60,7 +57,6 @@ class DisasterListAdapter :
         return DisasterListViewHolder(DisasterListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DisasterListViewHolder, position: Int) {
         holder.bind(getItem(position))
     }

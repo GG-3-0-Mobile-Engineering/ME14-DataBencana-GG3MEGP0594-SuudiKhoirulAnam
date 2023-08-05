@@ -1,7 +1,6 @@
 package com.ferosburn.databencana.presentation
 
 import android.app.DatePickerDialog
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.core.widget.doBeforeTextChanged
 import androidx.fragment.app.Fragment
@@ -44,13 +42,11 @@ class FilterFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.initBinding(view)
+        binding.initBinding()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun FragmentFilterBinding.initBinding(v: View) {
+    private fun FragmentFilterBinding.initBinding() {
         btnFilter.setOnClickListener {
             val disasterTypes =
                 if (disasterTypeAutocomplete.text.toString() == DisasterTypes.ALL.disasterName) {
@@ -140,7 +136,6 @@ class FilterFragment : Fragment() {
         view.setText(SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(calendar.time))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun FragmentFilterBinding.isFilterValid(): Boolean {
         if (inputRegion.text.isNotBlank() && inputRegion.text.toString()
                 .provinceNameToProvinces() == null
