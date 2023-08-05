@@ -69,8 +69,8 @@ dependencies {
     implementation 'io.coil-kt:coil:2.4.0'
 
     // DI Hilt
-    implementation 'com.google.dagger:hilt-android:2.47'
-    ksp 'com.google.dagger:hilt-android-compiler:2.47'
+    implementation 'com.google.dagger:hilt-android:2.44'
+    ksp 'com.google.dagger:hilt-android-compiler:2.44'
 
     // Unit Test
     testImplementation 'junit:junit:4.13.2'
