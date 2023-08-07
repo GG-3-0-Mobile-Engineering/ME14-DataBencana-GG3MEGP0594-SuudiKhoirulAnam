@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp' version '1.9.0-1.0.11'
+    id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
 }
 
@@ -62,15 +62,15 @@ dependencies {
 
     // Room
     implementation 'androidx.room:room-runtime:2.5.2'
-    ksp 'androidx.room:room-compiler:2.5.2'
+    kapt 'androidx.room:room-compiler:2.5.2'
     implementation 'androidx.room:room-ktx:2.5.2'
 
     // Coil
     implementation 'io.coil-kt:coil:2.4.0'
 
     // DI Hilt
-    implementation 'com.google.dagger:hilt-android:2.44'
-    ksp 'com.google.dagger:hilt-android-compiler:2.44'
+    implementation 'com.google.dagger:hilt-android:2.47'
+    kapt 'com.google.dagger:hilt-compiler:2.47'
 
     // Unit Test
     testImplementation 'junit:junit:4.13.2'
