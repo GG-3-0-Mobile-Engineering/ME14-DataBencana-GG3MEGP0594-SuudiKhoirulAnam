@@ -18,12 +18,14 @@ import com.ferosburn.databencana.util.disasterValueToDisasterTypes
 import com.ferosburn.databencana.util.localDateToFormattedDateTime
 import com.ferosburn.databencana.util.provinceCodeToProvinces
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.api.IMapController
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
