@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ferosburn.databencana.R
-import com.ferosburn.databencana.data.DisasterModel
+import com.ferosburn.databencana.network.DisasterModel
 import com.ferosburn.databencana.databinding.DisasterListItemBinding
 import com.ferosburn.databencana.util.disasterValueToDisasterTypes
 import com.ferosburn.databencana.util.provinceCodeToProvinces

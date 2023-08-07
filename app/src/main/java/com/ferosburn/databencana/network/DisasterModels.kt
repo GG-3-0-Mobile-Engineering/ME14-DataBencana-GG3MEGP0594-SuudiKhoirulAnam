@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.data
+package com.ferosburn.databencana.network
 
 data class DisasterModel(
     val pkey: String,

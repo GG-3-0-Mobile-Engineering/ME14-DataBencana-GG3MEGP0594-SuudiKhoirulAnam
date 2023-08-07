@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferosburn.databencana.R
-import com.ferosburn.databencana.data.DisasterTypes
+import com.ferosburn.databencana.network.DisasterTypes
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
 import com.ferosburn.databencana.util.KeyConstant
 import com.ferosburn.databencana.util.disasterValueToDisasterTypes

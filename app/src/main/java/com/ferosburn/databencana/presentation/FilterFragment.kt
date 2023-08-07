@@ -14,8 +14,8 @@ import androidx.core.widget.doBeforeTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ferosburn.databencana.R
-import com.ferosburn.databencana.data.DisasterTypes
-import com.ferosburn.databencana.data.Provinces
+import com.ferosburn.databencana.network.DisasterTypes
+import com.ferosburn.databencana.network.Provinces
 import com.ferosburn.databencana.databinding.FragmentFilterBinding
 import com.ferosburn.databencana.util.KeyConstant
 import com.ferosburn.databencana.util.disasterNameToDisasterTypes
