@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.database
+package com.ferosburn.databencana.data.source.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -12,6 +12,6 @@ interface DisasterDao {
     fun getAllDisaster(): LiveData<List<DisasterEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDisaster(disaster: List<DisasterEntity>)
+    suspend fun insertDisaster(disaster: List<DisasterEntity>)
 }
 

@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.database
+package com.ferosburn.databencana.data.source.local
 
 import android.content.Context
 import androidx.room.Database

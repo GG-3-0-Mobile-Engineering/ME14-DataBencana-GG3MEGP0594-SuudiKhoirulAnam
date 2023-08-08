@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.network
+package com.ferosburn.databencana.data.source.remote
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

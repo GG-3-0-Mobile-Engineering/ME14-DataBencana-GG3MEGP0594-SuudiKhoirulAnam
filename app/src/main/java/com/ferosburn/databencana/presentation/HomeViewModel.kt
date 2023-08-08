@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ferosburn.databencana.network.DataReport
+import com.ferosburn.databencana.data.source.remote.DataReport
 import com.ferosburn.databencana.network.DisasterModel
-import com.ferosburn.databencana.network.Report
+import com.ferosburn.databencana.data.source.remote.Report
 import kotlinx.coroutines.launch
 
 enum class DataStatus { LOADING, DONE, ERROR }
