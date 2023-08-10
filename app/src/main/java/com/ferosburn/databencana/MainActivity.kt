@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ferosburn.databencana.databinding.ActivityMainBinding
-import com.ferosburn.databencana.util.KeyConstant
+import com.ferosburn.databencana.utils.KeyConstant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 

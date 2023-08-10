@@ -17,10 +17,10 @@ import com.ferosburn.databencana.R
 import com.ferosburn.databencana.network.DisasterTypes
 import com.ferosburn.databencana.network.Provinces
 import com.ferosburn.databencana.databinding.FragmentFilterBinding
-import com.ferosburn.databencana.util.KeyConstant
-import com.ferosburn.databencana.util.disasterNameToDisasterTypes
-import com.ferosburn.databencana.util.provinceNameToProvinces
-import com.ferosburn.databencana.util.setInputError
+import com.ferosburn.databencana.utils.KeyConstant
+import com.ferosburn.databencana.utils.disasterNameToDisasterTypes
+import com.ferosburn.databencana.utils.provinceNameToProvinces
+import com.ferosburn.databencana.utils.setInputError
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

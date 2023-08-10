@@ -9,8 +9,8 @@ import coil.load
 import com.ferosburn.databencana.R
 import com.ferosburn.databencana.network.DisasterModel
 import com.ferosburn.databencana.databinding.DisasterListItemBinding
-import com.ferosburn.databencana.util.disasterValueToDisasterTypes
-import com.ferosburn.databencana.util.provinceCodeToProvinces
+import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
+import com.ferosburn.databencana.utils.provinceCodeToProvinces
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale

@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.util
+package com.ferosburn.databencana.utils
 
 object KeyConstant {
     const val TAG = "databencanadebug"

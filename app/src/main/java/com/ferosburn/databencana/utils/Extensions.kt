@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.util
+package com.ferosburn.databencana.utils
 
 import com.ferosburn.databencana.network.DisasterTypes
 import com.ferosburn.databencana.network.Provinces

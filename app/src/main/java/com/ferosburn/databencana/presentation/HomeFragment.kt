@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferosburn.databencana.R
 import com.ferosburn.databencana.network.DisasterTypes
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
-import com.ferosburn.databencana.util.KeyConstant
-import com.ferosburn.databencana.util.disasterValueToDisasterTypes
-import com.ferosburn.databencana.util.localDateToFormattedDateTime
-import com.ferosburn.databencana.util.provinceCodeToProvinces
+import com.ferosburn.databencana.utils.KeyConstant
+import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
+import com.ferosburn.databencana.utils.localDateToFormattedDateTime
+import com.ferosburn.databencana.utils.provinceCodeToProvinces
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.api.IMapController

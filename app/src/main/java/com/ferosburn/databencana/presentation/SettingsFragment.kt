@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.ferosburn.databencana.databinding.FragmentSettingsBinding
-import com.ferosburn.databencana.util.KeyConstant
+import com.ferosburn.databencana.utils.KeyConstant
 
 class SettingsFragment: Fragment() {
     private var _binding: FragmentSettingsBinding? = null
