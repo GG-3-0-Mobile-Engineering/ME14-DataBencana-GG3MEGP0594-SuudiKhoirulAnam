@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ferosburn.databencana.R
-import com.ferosburn.databencana.network.DisasterModel
 import com.ferosburn.databencana.databinding.DisasterListItemBinding
+import com.ferosburn.databencana.domain.model.DisasterModel
 import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
 import com.ferosburn.databencana.utils.provinceCodeToProvinces
 import java.time.LocalDateTime
@@ -38,7 +38,7 @@ class DisasterListAdapter :
                 tvDisasterType.text =
                     disasterItem.disasterType.disasterValueToDisasterTypes()?.disasterName
                 tvProvince.text =
-                    disasterItem.instanceRegionCode.provinceCodeToProvinces()?.provinceName
+                    disasterItem.instanceRegionCode?.provinceCodeToProvinces()?.provinceName
             }
         }
     }

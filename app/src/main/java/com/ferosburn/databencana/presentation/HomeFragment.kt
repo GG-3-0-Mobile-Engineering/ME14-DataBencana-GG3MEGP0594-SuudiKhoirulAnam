@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferosburn.databencana.R
-import com.ferosburn.databencana.network.DisasterTypes
+import com.ferosburn.databencana.data.Resource
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
+import com.ferosburn.databencana.domain.model.DisasterModel
+import com.ferosburn.databencana.network.DisasterTypes
 import com.ferosburn.databencana.utils.KeyConstant
 import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
 import com.ferosburn.databencana.utils.localDateToFormattedDateTime
@@ -21,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.api.IMapController
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
@@ -31,8 +34,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var map: MapView
     private lateinit var mapController: IMapController
-    private var avgLong: Double = DEFAULT_LONGITUDE
-    private var avgLat: Double = DEFAULT_LATITUDE
     private val disasterListAdapter: DisasterListAdapter = DisasterListAdapter()
 
     private val viewModel: HomeViewModel by viewModels()
@@ -48,6 +49,12 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)
+        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)
+            ?.localDateToFormattedDateTime("dd-MM-yyyy")
+        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)
+            ?.localDateToFormattedDateTime("dd-MM-yyyy")
+        val province = arguments?.getString(KeyConstant.PROVINCE_FILTER)
         initMap()
         binding.apply {
             initAdapter()
@@ -84,6 +91,15 @@ class HomeFragment : Fragment() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {}
                 })
             }
+        if (!disasterType.isNullOrBlank() || (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) || !province.isNullOrBlank()) {
+            if (startDate.isNullOrBlank() || endDate.isNullOrBlank()) {
+                getRecentReports(DAY_TIME_PERIOD * 2, province, disasterType)
+            } else {
+                getReports(startDate, endDate, province, disasterType)
+            }
+        } else {
+            getRecentReports(DAY_TIME_PERIOD * 2)
+        }
     }
 
     private fun initMap() {
@@ -108,100 +124,6 @@ class HomeFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onResume() {
         super.onResume()
-        val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)
-        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)
-            ?.localDateToFormattedDateTime("dd-MM-yyyy")
-        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)
-            ?.localDateToFormattedDateTime("dd-MM-yyyy")
-        val province = arguments?.getString(KeyConstant.PROVINCE_FILTER)
-
-        viewModel.apply {
-            if (!disasterType.isNullOrBlank() || (!startDate.isNullOrBlank() && !endDate.isNullOrBlank()) || !province.isNullOrBlank()) {
-                fetchFilteredList(disasterType, startDate, endDate, province)
-            } else if (isListEmpty()) {
-                fetchDisasterData()
-            }
-            status.observe(viewLifecycleOwner) {
-                when (it) {
-                    DataStatus.ERROR -> {
-                        disasterData.observe(viewLifecycleOwner) {data ->
-                            when (data.statusCode) {
-                                in 500..599 -> {
-                                    Toast.makeText(context, "Server Bermasalah", Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                                in 400..499 -> {
-                                    Toast.makeText(context, "Ada Kesalahan Aplikasi", Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                                else -> {
-                                    Toast.makeText(context, "Tidak Dapat Terhubung Ke Server", Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                            }
-                        }
-                    }
-
-                    DataStatus.LOADING -> {
-                        Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-
-                    DataStatus.DONE -> {
-                        Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT)
-                            .show()
-                        bbox.observe(viewLifecycleOwner) { coordinates ->
-                            avgLong = averageCoordinate(coordinates[0], coordinates[2])
-                            avgLat = averageCoordinate(coordinates[1], coordinates[3])
-                            mapController.setCenter(GeoPoint(avgLat, avgLong))
-                            mapController.zoomTo(
-                                calculateZoomLevel(coordinates[0], coordinates[2]),
-                                1000
-                            )
-                        }
-                        listDisaster.observe(viewLifecycleOwner) { list ->
-                            if (list.isEmpty()) {
-                                Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
-                                    .show()
-                                BottomSheetBehavior.from(binding.disasterListBottomSheet.root)
-                                    .apply {
-                                        peekHeight = 0
-                                        this.state = BottomSheetBehavior.STATE_HIDDEN
-                                    }
-                            } else {
-                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.visibility = View.VISIBLE
-                                BottomSheetBehavior.from(binding.disasterListBottomSheet.root).apply {
-                                    peekHeight = 150
-                                    this.state = BottomSheetBehavior.STATE_COLLAPSED
-                                }
-                            }
-                            map.overlays.clear()
-                            disasterListAdapter.submitList(list)
-                            list.map { itemDisaster ->
-                                val marker = Marker(map)
-                                marker.position =
-                                    GeoPoint(
-                                        itemDisaster.coordinates[1],
-                                        itemDisaster.coordinates[0]
-                                    )
-                                marker.icon =
-                                    context?.getDrawable(getDisasterIcon(itemDisaster.disasterType))
-                                marker.title =
-                                    "${itemDisaster.disasterType.disasterValueToDisasterTypes()?.disasterName}\n${
-                                        itemDisaster.instanceRegionCode.provinceCodeToProvinces()?.provinceName
-                                    }"
-                                marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
-                                map.overlays.add(marker)
-                            }
-                            map.invalidate()
-                        }
-                    }
-
-                    else -> return@observe
-                }
-            }
-        }
-
         map.onResume()
     }
 
@@ -215,12 +137,129 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun averageCoordinate(value1: Double, value2: Double): Double {
-        return (value1 + value2) / 2
+    private fun getRecentReports(
+        timePeriod: Int,
+        provinceCode: String? = null,
+        disasterValue: String? = null
+    ) {
+        viewModel.getRecentReports(timePeriod, provinceCode, disasterValue)
+            .observe(viewLifecycleOwner) { disasters ->
+                if (disasters != null) {
+                    when (disasters) {
+                        is Resource.Loading -> {
+                            Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(context, "Ada Kesalahan", Toast.LENGTH_LONG)
+                                .show()
+                        }
+
+                        is Resource.Success -> {
+                            val list = disasters.data
+                            if (list.isNullOrEmpty()) {
+                                Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
+                                    .show()
+                                return@observe
+                            }
+                            map.overlays.clear()
+                            disasterListAdapter.submitList(list)
+                            showMapMarkers(list)
+                            showDisasterBottomSheet(list)
+                        }
+                    }
+                }
+            }
     }
 
-    private fun calculateZoomLevel(minLong: Double, maxLong: Double): Double {
-        return CURVATURE_DEGREE / ((maxLong - minLong) + CURVATURE_X_OFFSET) + CURVATURE_INITIAL_VALUE
+    private fun getReports(
+        startTime: String,
+        endTime: String,
+        provinceCode: String? = null,
+        disasterValue: String? = null
+    ) {
+        viewModel.getReports(startTime, endTime, provinceCode)
+            .observe(viewLifecycleOwner) { disasters ->
+                if (disasters != null) {
+                    when (disasters) {
+                        is Resource.Loading -> {
+                            Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(context, "Ada Kesalahan", Toast.LENGTH_LONG)
+                                .show()
+                        }
+
+                        is Resource.Success -> {
+                            val list = if (disasterValue.isNullOrBlank()) {
+                                disasters.data
+                            } else {
+                                disasters.data?.filter { item -> item.disasterType == disasterValue }
+                            }
+                            if (list.isNullOrEmpty()) {
+                                Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
+                                    .show()
+                                return@observe
+                            }
+                            map.overlays.clear()
+                            disasterListAdapter.submitList(list)
+                            showMapMarkers(list)
+                            showDisasterBottomSheet(list)
+                        }
+                    }
+                }
+            }
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun showMapMarkers(data: List<DisasterModel>) {
+        if (data.isNotEmpty()) {
+            with(data) {
+                val north = this.maxBy { it.latitude }.latitude + 1
+                val east = this.maxBy { it.longitude }.longitude + 1
+                val south = this.minBy { it.latitude }.latitude - 1
+                val west = this.minBy { it.longitude }.longitude - 1
+                val b = BoundingBox(north, east, south, west)
+                map.zoomToBoundingBox(b, true)
+                this.map { itemDisaster ->
+                    val marker = Marker(map)
+                    marker.position =
+                        GeoPoint(
+                            itemDisaster.latitude,
+                            itemDisaster.longitude
+                        )
+                    marker.icon = context?.getDrawable(getDisasterIcon(itemDisaster.disasterType))
+                    marker.title =
+                        "${itemDisaster.disasterType.disasterValueToDisasterTypes()?.disasterName}\n${
+                            itemDisaster.instanceRegionCode?.provinceCodeToProvinces()?.provinceName
+                        }"
+                    marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)
+                    map.overlays.add(marker)
+                }
+            }
+        }
+        map.invalidate()
+    }
+
+    private fun showDisasterBottomSheet(data: List<DisasterModel>) {
+        if (data.isEmpty()) {
+            Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
+                .show()
+            BottomSheetBehavior.from(binding.disasterListBottomSheet.root)
+                .apply {
+                    peekHeight = 0
+                    this.state = BottomSheetBehavior.STATE_HIDDEN
+                }
+        } else {
+            binding.disasterListBottomSheet.layoutDisasterListBottomSheet.visibility = View.VISIBLE
+            BottomSheetBehavior.from(binding.disasterListBottomSheet.root).apply {
+                peekHeight = 150
+                this.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
     }
 
     private fun getDisasterIcon(disasterType: String): Int {
@@ -236,11 +275,9 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
+        const val DAY_TIME_PERIOD = 86400
         const val DEFAULT_LATITUDE: Double = -2.483383
         const val DEFAULT_LONGITUDE: Double = 117.890285
         const val DEFAULT_ZOOM_LEVEL: Double = 5.0
-        const val CURVATURE_INITIAL_VALUE: Double = 3.0
-        const val CURVATURE_DEGREE: Double = 50.0
-        const val CURVATURE_X_OFFSET: Double = 3.6
     }
 }
