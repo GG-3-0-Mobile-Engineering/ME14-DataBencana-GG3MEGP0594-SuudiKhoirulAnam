@@ -1,23 +1,4 @@
-package com.ferosburn.databencana.network
-
-data class DisasterModel(
-    val pkey: String,
-    val createdAt: String,
-    val imageUrl: String?,
-    val disasterType: String,
-    val instanceRegionCode: String,
-    val coordinates: List<Double>
-)
-
-enum class DisasterTypes(val disasterName: String, val disasterValue: String) {
-    ALL("Semua", ""),
-    FLOOD("Banjir", "flood"),
-    EARTHQUAKE("Gempa Bumi", "earthquake"),
-    FIRE("Kebakaran", "fire"),
-    HAZE("Kabut Asap", "haze"),
-    WIND("Angin Kencang", "wind"),
-    VOLCANO("Gunung Api", "volcano")
-}
+package com.ferosburn.databencana.domain.model
 
 enum class Provinces(val provinceName: String, val code: String) {
     ACEH("Aceh", "ID-AC"),

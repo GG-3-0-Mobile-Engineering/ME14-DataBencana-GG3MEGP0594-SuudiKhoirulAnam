@@ -14,7 +14,7 @@ import com.ferosburn.databencana.R
 import com.ferosburn.databencana.data.Resource
 import com.ferosburn.databencana.databinding.FragmentHomeBinding
 import com.ferosburn.databencana.domain.model.DisasterModel
-import com.ferosburn.databencana.network.DisasterTypes
+import com.ferosburn.databencana.domain.model.DisasterTypes
 import com.ferosburn.databencana.utils.KeyConstant
 import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
 import com.ferosburn.databencana.utils.localDateToFormattedDateTime

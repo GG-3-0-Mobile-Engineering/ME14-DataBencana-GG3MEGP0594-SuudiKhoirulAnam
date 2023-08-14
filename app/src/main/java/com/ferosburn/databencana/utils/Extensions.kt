@@ -1,7 +1,7 @@
 package com.ferosburn.databencana.utils
 
-import com.ferosburn.databencana.network.DisasterTypes
-import com.ferosburn.databencana.network.Provinces
+import com.ferosburn.databencana.domain.model.DisasterTypes
+import com.ferosburn.databencana.domain.model.Provinces
 import com.google.android.material.textfield.TextInputLayout
 import java.time.LocalDate
 import java.time.ZoneOffset
