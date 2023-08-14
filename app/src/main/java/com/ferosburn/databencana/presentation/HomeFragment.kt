@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)
         val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)
@@ -121,7 +120,6 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onResume() {
         super.onResume()
         map.onResume()
@@ -147,16 +145,17 @@ class HomeFragment : Fragment() {
                 if (disasters != null) {
                     when (disasters) {
                         is Resource.Loading -> {
-                            Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
-                                .show()
+                            binding.loadingOverlay.visibility = View.VISIBLE
                         }
 
                         is Resource.Error -> {
+                            binding.loadingOverlay.visibility = View.GONE
                             Toast.makeText(context, "Ada Kesalahan", Toast.LENGTH_LONG)
                                 .show()
                         }
 
                         is Resource.Success -> {
+                            binding.loadingOverlay.visibility = View.GONE
                             val list = disasters.data
                             if (list.isNullOrEmpty()) {
                                 Toast.makeText(context, "Tidak Ada Data", Toast.LENGTH_SHORT)
@@ -184,16 +183,17 @@ class HomeFragment : Fragment() {
                 if (disasters != null) {
                     when (disasters) {
                         is Resource.Loading -> {
-                            Toast.makeText(context, "Memuat ...", Toast.LENGTH_SHORT)
-                                .show()
+                            binding.loadingOverlay.visibility = View.VISIBLE
                         }
 
                         is Resource.Error -> {
+                            binding.loadingOverlay.visibility = View.GONE
                             Toast.makeText(context, "Ada Kesalahan", Toast.LENGTH_LONG)
                                 .show()
                         }
 
                         is Resource.Success -> {
+                            binding.loadingOverlay.visibility = View.GONE
                             val list = if (disasterValue.isNullOrBlank()) {
                                 disasters.data
                             } else {
