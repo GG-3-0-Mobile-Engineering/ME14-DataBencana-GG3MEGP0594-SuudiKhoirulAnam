@@ -43,7 +43,7 @@ data class PropertiesReport(
     @Json(name = "disaster_type")
     val disasterType: String,
     @Json(name = "report_data")
-    val propertyReportData: PropertyReportData,
+    val propertyReportData: PropertyReportData?,
     @Json(name = "tags")
     val propertyTags: PropertyTags,
     val title: String?,
