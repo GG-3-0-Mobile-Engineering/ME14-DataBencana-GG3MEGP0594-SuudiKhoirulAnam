@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.presentation
+package com.ferosburn.databencana.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

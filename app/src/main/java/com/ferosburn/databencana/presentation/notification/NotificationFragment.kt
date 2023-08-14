@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.presentation
+package com.ferosburn.databencana.presentation.notification
 
 import android.os.Bundle
 import android.view.LayoutInflater

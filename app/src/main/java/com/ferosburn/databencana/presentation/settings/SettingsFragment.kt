@@ -1,4 +1,4 @@
-package com.ferosburn.databencana.presentation
+package com.ferosburn.databencana.presentation.settings
 
 import android.annotation.SuppressLint
 import android.content.Context
