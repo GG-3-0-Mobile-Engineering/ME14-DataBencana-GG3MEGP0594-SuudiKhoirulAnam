@@ -20,7 +20,6 @@ object DataMapper {
             )
             disasterList.add(disaster)
         }
-//        Log.d("${KeyConstant.TAG}@ResponseToEntities", disasterList.toString())
         return disasterList
     }
 
