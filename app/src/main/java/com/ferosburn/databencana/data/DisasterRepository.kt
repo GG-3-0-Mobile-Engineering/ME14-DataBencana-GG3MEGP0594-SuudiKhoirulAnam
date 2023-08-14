@@ -32,8 +32,10 @@ class DisasterRepository @Inject constructor(
             override suspend fun createCall(): Flow<ReportResponse<List<GeometryReport>>> =
                 remoteDataSource.getRecentReports(timePeriod, provinceCode, disasterValue)
 
-            override suspend fun saveCallResult(data: List<GeometryReport>) =
+            override suspend fun saveCallResult(data: List<GeometryReport>) {
+                localDataSource.deleteAllDisaster()
                 localDataSource.insertDisaster(DataMapper.mapResponseToEntities(data))
+            }
 
             override fun shouldFetch(data: List<DisasterModel>?): Boolean = true
 
@@ -53,8 +55,10 @@ class DisasterRepository @Inject constructor(
             override suspend fun createCall(): Flow<ReportResponse<List<GeometryReport>>> =
                 remoteDataSource.getReports(startTime, endTime, provinceCode)
 
-            override suspend fun saveCallResult(data: List<GeometryReport>) =
+            override suspend fun saveCallResult(data: List<GeometryReport>) {
+                localDataSource.deleteAllDisaster()
                 localDataSource.insertDisaster(DataMapper.mapResponseToEntities(data))
+            }
 
             override fun shouldFetch(data: List<DisasterModel>?): Boolean = true
 

@@ -13,5 +13,8 @@ interface DisasterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDisaster(disasterList: List<DisasterEntity>)
+
+    @Query("DELETE FROM disaster")
+    suspend fun deleteAllDisaster()
 }
 

@@ -11,4 +11,6 @@ class LocalDataSource @Inject constructor(private val disasterDao: DisasterDao) 
 
     suspend fun insertDisaster(disasterList: List<DisasterEntity>) = disasterDao.insertDisaster(disasterList)
 
+    suspend fun deleteAllDisaster() = disasterDao.deleteAllDisaster()
+
 }
