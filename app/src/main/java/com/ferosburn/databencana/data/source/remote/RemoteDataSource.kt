@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RemoteDataSource @Inject constructor(private val reportService: ReportService) {
-    suspend fun getReport (startTime: String, endTime: String, provinceCode: String? = null): Flow<ReportResponse<List<GeometryReport>>> {
+    suspend fun getReports (startTime: String, endTime: String, provinceCode: String? = null): Flow<ReportResponse<List<GeometryReport>>> {
         return flow {
             try {
                 val response = reportService.getReports(startTime, endTime, provinceCode)

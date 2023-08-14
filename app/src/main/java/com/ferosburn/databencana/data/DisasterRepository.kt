@@ -18,7 +18,7 @@ class DisasterRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : IDisasterRepository {
 
-    override fun getAllDisaster(
+    override fun getRecentReports(
         timePeriod: Int,
         provinceCode: String?,
         disasterValue: String?
@@ -31,6 +31,27 @@ class DisasterRepository @Inject constructor(
 
             override suspend fun createCall(): Flow<ReportResponse<List<GeometryReport>>> =
                 remoteDataSource.getRecentReports(timePeriod, provinceCode, disasterValue)
+
+            override suspend fun saveCallResult(data: List<GeometryReport>) =
+                localDataSource.insertDisaster(DataMapper.mapResponseToEntities(data))
+
+            override fun shouldFetch(data: List<DisasterModel>?): Boolean = true
+
+        }.asFlow()
+
+    override fun getReports(
+        startTime: String,
+        endTime: String,
+        provinceCode: String?
+    ): Flow<Resource<List<DisasterModel>>> =
+        object : NetworkBoundResource<List<DisasterModel>, List<GeometryReport>>() {
+            override fun loadFromDB(): Flow<List<DisasterModel>> =
+                localDataSource.getAllDisaster().map {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
+
+            override suspend fun createCall(): Flow<ReportResponse<List<GeometryReport>>> =
+                remoteDataSource.getReports(startTime, endTime, provinceCode)
 
             override suspend fun saveCallResult(data: List<GeometryReport>) =
                 localDataSource.insertDisaster(DataMapper.mapResponseToEntities(data))
