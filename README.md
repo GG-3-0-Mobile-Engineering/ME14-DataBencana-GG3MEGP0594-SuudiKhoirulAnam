@@ -47,6 +47,13 @@ download the apk file [here (Google Drive)](https://drive.google.com/file/d/1Ejg
 | JUnit                | 4.13.2  |
 | Mockito              | 5.4.0   |
 
+## Tests
+### Attempted Unit Test Coverage
+![Screenshot from 2023-08-15 13-35-21](https://github.com/GG-3-0-Mobile-Engineering/ME14-DataBencana-GG3MEGP0594-SuudiKhoirulAnam/assets/38739491/55ca20e7-9805-47d7-b1b1-eb23076be0a5)
+
+### Overall Unit Test Coverage
+![Screenshot from 2023-08-15 13-36-47](https://github.com/GG-3-0-Mobile-Engineering/ME14-DataBencana-GG3MEGP0594-SuudiKhoirulAnam/assets/38739491/5eccf3f6-93da-4937-8dec-e6fa2031d513)
+
 ## Preview
 YouTube: [Data Bencana App Based On PetaBencana.id API](https://youtu.be/5Ri-qakv7hY)
 
