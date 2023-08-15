@@ -53,6 +53,7 @@ download the apk file [here (Google Drive)](https://drive.google.com/file/d/1Ejg
 
 ### Overall Unit Test Coverage
 ![Screenshot from 2023-08-15 13-36-47](https://github.com/GG-3-0-Mobile-Engineering/ME14-DataBencana-GG3MEGP0594-SuudiKhoirulAnam/assets/38739491/5eccf3f6-93da-4937-8dec-e6fa2031d513)
+to see more information about this, please clone the project then open the directory of `/test-coverage-result/index.html` in your browser
 
 ## Preview
 YouTube: [Data Bencana App Based On PetaBencana.id API](https://youtu.be/5Ri-qakv7hY)
