@@ -1,0 +1,86 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > IDisasterRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.domain.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: IDisasterRepository (com.ferosburn.databencana.domain.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">IDisasterRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.domain.repository
+&nbsp;
+&nbsp;import com.ferosburn.databencana.data.Resource
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterModel
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;
+&nbsp;interface IDisasterRepository {
+&nbsp;    fun getRecentReports(
+&nbsp;        timePeriod: Int,
+&nbsp;        provinceCode: String?,
+&nbsp;        disasterValue: String?
+&nbsp;    ) : Flow&lt;Resource&lt;List&lt;DisasterModel&gt;&gt;&gt;
+&nbsp;
+&nbsp;    fun getReports(
+&nbsp;        startTime: String,
+&nbsp;        endTime: String,
+&nbsp;        provinceCode: String?
+&nbsp;    ) : Flow&lt;Resource&lt;List&lt;DisasterModel&gt;&gt;&gt;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DisasterDatabase_Impl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.data.source.local</a>
+</div>
+
+<h1>Coverage Summary for Class: DisasterDatabase_Impl (com.ferosburn.databencana.data.source.local)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DisasterDatabase_Impl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/34)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">DisasterDatabase_Impl$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/33)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/67)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.data.source.local;
+&nbsp;
+&nbsp;import androidx.annotation.NonNull;
+&nbsp;import androidx.room.DatabaseConfiguration;
+&nbsp;import androidx.room.InvalidationTracker;
+&nbsp;import androidx.room.RoomOpenHelper;
+&nbsp;import androidx.room.RoomOpenHelper.Delegate;
+&nbsp;import androidx.room.RoomOpenHelper.ValidationResult;
+&nbsp;import androidx.room.migration.AutoMigrationSpec;
+&nbsp;import androidx.room.migration.Migration;
+&nbsp;import androidx.room.util.DBUtil;
+&nbsp;import androidx.room.util.TableInfo;
+&nbsp;import androidx.room.util.TableInfo.Column;
+&nbsp;import androidx.room.util.TableInfo.ForeignKey;
+&nbsp;import androidx.room.util.TableInfo.Index;
+&nbsp;import androidx.sqlite.db.SupportSQLiteDatabase;
+&nbsp;import androidx.sqlite.db.SupportSQLiteOpenHelper;
+&nbsp;import androidx.sqlite.db.SupportSQLiteOpenHelper.Callback;
+&nbsp;import androidx.sqlite.db.SupportSQLiteOpenHelper.Configuration;
+&nbsp;import java.lang.Class;
+&nbsp;import java.lang.Override;
+&nbsp;import java.lang.String;
+&nbsp;import java.lang.SuppressWarnings;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Set;
+&nbsp;
+&nbsp;@SuppressWarnings({&quot;unchecked&quot;, &quot;deprecation&quot;})
+<b class="nc">&nbsp;public final class DisasterDatabase_Impl extends DisasterDatabase {</b>
+&nbsp;  private volatile DisasterDao _disasterDao;
+&nbsp;
+&nbsp;  @Override
+&nbsp;  protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
+<b class="nc">&nbsp;    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {</b>
+&nbsp;      @Override
+&nbsp;      public void createAllTables(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        _db.execSQL(&quot;CREATE TABLE IF NOT EXISTS `disaster` (`pkey` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `imageUrl` TEXT, `disasterType` TEXT NOT NULL, `instanceRegionCode` TEXT, `longitude` REAL NOT NULL, `latitude` REAL NOT NULL, PRIMARY KEY(`pkey`))&quot;);</b>
+<b class="nc">&nbsp;        _db.execSQL(&quot;CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)&quot;);</b>
+<b class="nc">&nbsp;        _db.execSQL(&quot;INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, &#39;7b28128d48283861b795910d1cde28bb&#39;)&quot;);</b>
+&nbsp;      }
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public void dropAllTables(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        _db.execSQL(&quot;DROP TABLE IF EXISTS `disaster`&quot;);</b>
+<b class="nc">&nbsp;        if (mCallbacks != null) {</b>
+<b class="nc">&nbsp;          for (int _i = 0, _size = mCallbacks.size(); _i &lt; _size; _i++) {</b>
+<b class="nc">&nbsp;            mCallbacks.get(_i).onDestructiveMigration(_db);</b>
+&nbsp;          }
+&nbsp;        }
+&nbsp;      }
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public void onCreate(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        if (mCallbacks != null) {</b>
+<b class="nc">&nbsp;          for (int _i = 0, _size = mCallbacks.size(); _i &lt; _size; _i++) {</b>
+<b class="nc">&nbsp;            mCallbacks.get(_i).onCreate(_db);</b>
+&nbsp;          }
+&nbsp;        }
+&nbsp;      }
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public void onOpen(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        mDatabase = _db;</b>
+<b class="nc">&nbsp;        internalInitInvalidationTracker(_db);</b>
+<b class="nc">&nbsp;        if (mCallbacks != null) {</b>
+<b class="nc">&nbsp;          for (int _i = 0, _size = mCallbacks.size(); _i &lt; _size; _i++) {</b>
+<b class="nc">&nbsp;            mCallbacks.get(_i).onOpen(_db);</b>
+&nbsp;          }
+&nbsp;        }
+&nbsp;      }
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public void onPreMigrate(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        DBUtil.dropFtsSyncTriggers(_db);</b>
+&nbsp;      }
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public void onPostMigrate(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;      }</b>
+&nbsp;
+&nbsp;      @Override
+&nbsp;      public RoomOpenHelper.ValidationResult onValidateSchema(SupportSQLiteDatabase _db) {
+<b class="nc">&nbsp;        final HashMap&lt;String, TableInfo.Column&gt; _columnsDisaster = new HashMap&lt;String, TableInfo.Column&gt;(7);</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;pkey&quot;, new TableInfo.Column(&quot;pkey&quot;, &quot;INTEGER&quot;, true, 1, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;createdAt&quot;, new TableInfo.Column(&quot;createdAt&quot;, &quot;TEXT&quot;, true, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;imageUrl&quot;, new TableInfo.Column(&quot;imageUrl&quot;, &quot;TEXT&quot;, false, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;disasterType&quot;, new TableInfo.Column(&quot;disasterType&quot;, &quot;TEXT&quot;, true, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;instanceRegionCode&quot;, new TableInfo.Column(&quot;instanceRegionCode&quot;, &quot;TEXT&quot;, false, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;longitude&quot;, new TableInfo.Column(&quot;longitude&quot;, &quot;REAL&quot;, true, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        _columnsDisaster.put(&quot;latitude&quot;, new TableInfo.Column(&quot;latitude&quot;, &quot;REAL&quot;, true, 0, null, TableInfo.CREATED_FROM_ENTITY));</b>
+<b class="nc">&nbsp;        final HashSet&lt;TableInfo.ForeignKey&gt; _foreignKeysDisaster = new HashSet&lt;TableInfo.ForeignKey&gt;(0);</b>
+<b class="nc">&nbsp;        final HashSet&lt;TableInfo.Index&gt; _indicesDisaster = new HashSet&lt;TableInfo.Index&gt;(0);</b>
+<b class="nc">&nbsp;        final TableInfo _infoDisaster = new TableInfo(&quot;disaster&quot;, _columnsDisaster, _foreignKeysDisaster, _indicesDisaster);</b>
+<b class="nc">&nbsp;        final TableInfo _existingDisaster = TableInfo.read(_db, &quot;disaster&quot;);</b>
+<b class="nc">&nbsp;        if (! _infoDisaster.equals(_existingDisaster)) {</b>
+<b class="nc">&nbsp;          return new RoomOpenHelper.ValidationResult(false, &quot;disaster(com.ferosburn.databencana.data.source.local.DisasterEntity).\n&quot;</b>
+&nbsp;                  + &quot; Expected:\n&quot; + _infoDisaster + &quot;\n&quot;
+&nbsp;                  + &quot; Found:\n&quot; + _existingDisaster);
+&nbsp;        }
+<b class="nc">&nbsp;        return new RoomOpenHelper.ValidationResult(true, null);</b>
+&nbsp;      }
+&nbsp;    }, &quot;7b28128d48283861b795910d1cde28bb&quot;, &quot;fd4277093f3501550b72128f16f86a8c&quot;);
+<b class="nc">&nbsp;    final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)</b>
+<b class="nc">&nbsp;        .name(configuration.name)</b>
+<b class="nc">&nbsp;        .callback(_openCallback)</b>
+<b class="nc">&nbsp;        .build();</b>
+<b class="nc">&nbsp;    final SupportSQLiteOpenHelper _helper = configuration.sqliteOpenHelperFactory.create(_sqliteConfig);</b>
+<b class="nc">&nbsp;    return _helper;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  protected InvalidationTracker createInvalidationTracker() {
+<b class="nc">&nbsp;    final HashMap&lt;String, String&gt; _shadowTablesMap = new HashMap&lt;String, String&gt;(0);</b>
+<b class="nc">&nbsp;    HashMap&lt;String, Set&lt;String&gt;&gt; _viewTables = new HashMap&lt;String, Set&lt;String&gt;&gt;(0);</b>
+<b class="nc">&nbsp;    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, &quot;disaster&quot;);</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public void clearAllTables() {
+<b class="nc">&nbsp;    super.assertNotMainThread();</b>
+<b class="nc">&nbsp;    final SupportSQLiteDatabase _db = super.getOpenHelper().getWritableDatabase();</b>
+&nbsp;    try {
+<b class="nc">&nbsp;      super.beginTransaction();</b>
+<b class="nc">&nbsp;      _db.execSQL(&quot;DELETE FROM `disaster`&quot;);</b>
+<b class="nc">&nbsp;      super.setTransactionSuccessful();</b>
+&nbsp;    } finally {
+<b class="nc">&nbsp;      super.endTransaction();</b>
+<b class="nc">&nbsp;      _db.query(&quot;PRAGMA wal_checkpoint(FULL)&quot;).close();</b>
+<b class="nc">&nbsp;      if (!_db.inTransaction()) {</b>
+<b class="nc">&nbsp;        _db.execSQL(&quot;VACUUM&quot;);</b>
+&nbsp;      }
+<b class="nc">&nbsp;    }</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  protected Map&lt;Class&lt;?&gt;, List&lt;Class&lt;?&gt;&gt;&gt; getRequiredTypeConverters() {
+<b class="nc">&nbsp;    final HashMap&lt;Class&lt;?&gt;, List&lt;Class&lt;?&gt;&gt;&gt; _typeConvertersMap = new HashMap&lt;Class&lt;?&gt;, List&lt;Class&lt;?&gt;&gt;&gt;();</b>
+<b class="nc">&nbsp;    _typeConvertersMap.put(DisasterDao.class, DisasterDao_Impl.getRequiredConverters());</b>
+<b class="nc">&nbsp;    return _typeConvertersMap;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public Set&lt;Class&lt;? extends AutoMigrationSpec&gt;&gt; getRequiredAutoMigrationSpecs() {
+<b class="nc">&nbsp;    final HashSet&lt;Class&lt;? extends AutoMigrationSpec&gt;&gt; _autoMigrationSpecsSet = new HashSet&lt;Class&lt;? extends AutoMigrationSpec&gt;&gt;();</b>
+<b class="nc">&nbsp;    return _autoMigrationSpecsSet;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public List&lt;Migration&gt; getAutoMigrations(
+&nbsp;      @NonNull Map&lt;Class&lt;? extends AutoMigrationSpec&gt;, AutoMigrationSpec&gt; autoMigrationSpecsMap) {
+<b class="nc">&nbsp;    return Arrays.asList();</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public DisasterDao disasterDao() {
+<b class="nc">&nbsp;    if (_disasterDao != null) {</b>
+<b class="nc">&nbsp;      return _disasterDao;</b>
+&nbsp;    } else {
+<b class="nc">&nbsp;      synchronized(this) {</b>
+<b class="nc">&nbsp;        if(_disasterDao == null) {</b>
+<b class="nc">&nbsp;          _disasterDao = new DisasterDao_Impl(this);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return _disasterDao;</b>
+<b class="nc">&nbsp;      }</b>
+&nbsp;    }
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Provinces</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.domain.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Provinces (com.ferosburn.databencana.domain.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Provinces</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (35/35)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.domain.model
+&nbsp;
+<b class="fc">&nbsp;enum class Provinces(val provinceName: String, val code: String) {</b>
+<b class="fc">&nbsp;    ACEH(&quot;Aceh&quot;, &quot;ID-AC&quot;),</b>
+<b class="fc">&nbsp;    BALI(&quot;Bali&quot;, &quot;ID-BA&quot;),</b>
+<b class="fc">&nbsp;    BANGKABELITUNG(&quot;Kep. Bangka Belitung&quot;, &quot;ID-BB&quot;),</b>
+<b class="fc">&nbsp;    BENGKULU(&quot;Bengkulu&quot;, &quot;ID-BE&quot;),</b>
+<b class="fc">&nbsp;    BANTEN(&quot;Banten&quot;, &quot;ID-BT&quot;),</b>
+<b class="fc">&nbsp;    GORONTALO(&quot;Gorontalo&quot;, &quot;ID-GO&quot;),</b>
+<b class="fc">&nbsp;    JABAR(&quot;Jawa Barat&quot;, &quot;ID-JB&quot;),</b>
+<b class="fc">&nbsp;    JAKARTA(&quot;DKI Jakarta&quot;, &quot;ID-JK&quot;),</b>
+<b class="fc">&nbsp;    JAMBI(&quot;Jambi&quot;, &quot;ID-JA&quot;),</b>
+<b class="fc">&nbsp;    JATENG(&quot;Jawa Tengah&quot;, &quot;ID-JT&quot;),</b>
+<b class="fc">&nbsp;    JATIM(&quot;Jawa Timur&quot;, &quot;ID-JI&quot;),</b>
+<b class="fc">&nbsp;    KALBAR(&quot;Kalimantan Barat&quot;, &quot;ID-KB&quot;),</b>
+<b class="fc">&nbsp;    KALSEL(&quot;Kalimantan Selatan&quot;, &quot;ID-KS&quot;),</b>
+<b class="fc">&nbsp;    KALTARA(&quot;Kalimantan Utara&quot;, &quot;ID-KU&quot;),</b>
+<b class="fc">&nbsp;    KALTENG(&quot;Kalimantan Tengah&quot;, &quot;ID-KT&quot;),</b>
+<b class="fc">&nbsp;    KALTIM(&quot;Kalimantan Timur&quot;, &quot;ID-KI&quot;),</b>
+<b class="fc">&nbsp;    KEPRI(&quot;Kep. Riau&quot;, &quot;ID-KR&quot;),</b>
+<b class="fc">&nbsp;    LAMPUNG(&quot;Lampung&quot;, &quot;ID-LA&quot;),</b>
+<b class="fc">&nbsp;    MALUKU(&quot;Maluku&quot;, &quot;ID-MA&quot;),</b>
+<b class="fc">&nbsp;    MALUT(&quot;Maluku Utara&quot;, &quot;ID-MU&quot;),</b>
+<b class="fc">&nbsp;    NTB(&quot;Nusa Tenggara Barat&quot;, &quot;ID-NB&quot;),</b>
+<b class="fc">&nbsp;    NTT(&quot;Nusa Tenggara Timur&quot;, &quot;ID-NT&quot;),</b>
+<b class="fc">&nbsp;    PABAR(&quot;Papua Barat&quot;, &quot;ID-PB&quot;),</b>
+<b class="fc">&nbsp;    PAPUA(&quot;Papua&quot;, &quot;ID-PA&quot;),</b>
+<b class="fc">&nbsp;    RIAU(&quot;Riau&quot;, &quot;ID-RI&quot;),</b>
+<b class="fc">&nbsp;    SULBAR(&quot;Sulawesi Barat&quot;, &quot;ID-SR&quot;),</b>
+<b class="fc">&nbsp;    SULSEL(&quot;Sulawesi Selatan&quot;, &quot;ID-SN&quot;),</b>
+<b class="fc">&nbsp;    SULTENG(&quot;Sulawesi Tengah&quot;, &quot;ID-ST&quot;),</b>
+<b class="fc">&nbsp;    SULTRA(&quot;Sulawesi Tenggara&quot;, &quot;ID-SG&quot;),</b>
+<b class="fc">&nbsp;    SULUT(&quot;Sulawesi Utara&quot;, &quot;ID-SA&quot;),</b>
+<b class="fc">&nbsp;    SUMBAR(&quot;Sumatra Barat&quot;, &quot;ID-SB&quot;),</b>
+<b class="fc">&nbsp;    SUMSEL(&quot;Sumatra Selatan&quot;, &quot;ID-SS&quot;),</b>
+<b class="fc">&nbsp;    SUMUT(&quot;Sumatra Utara&quot;, &quot;ID-SU&quot;),</b>
+<b class="fc">&nbsp;    YOGYA(&quot;DI Yogyakarta&quot;, &quot;ID-YO&quot;)</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

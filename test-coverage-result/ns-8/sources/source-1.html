@@ -1,0 +1,432 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FilterFragment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.presentation.filter</a>
+</div>
+
+<h1>Coverage Summary for Class: FilterFragment (com.ferosburn.databencana.presentation.filter)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FilterFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/141)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FilterFragment$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">FilterFragment$initBinding$$inlined$doBeforeTextChanged$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">FilterFragment$initBinding$$inlined$doBeforeTextChanged$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">FilterFragment$initBinding$$inlined$doBeforeTextChanged$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">FilterFragment$initBinding$7</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/144)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.presentation.filter
+&nbsp;
+&nbsp;import android.app.DatePickerDialog
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import android.widget.ArrayAdapter
+&nbsp;import android.widget.AutoCompleteTextView
+&nbsp;import android.widget.EditText
+&nbsp;import androidx.activity.OnBackPressedCallback
+&nbsp;import androidx.core.os.bundleOf
+&nbsp;import androidx.core.widget.doBeforeTextChanged
+&nbsp;import androidx.fragment.app.Fragment
+&nbsp;import androidx.navigation.fragment.findNavController
+&nbsp;import com.ferosburn.databencana.R
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterTypes
+&nbsp;import com.ferosburn.databencana.domain.model.Provinces
+&nbsp;import com.ferosburn.databencana.databinding.FragmentFilterBinding
+&nbsp;import com.ferosburn.databencana.utils.KeyConstant
+&nbsp;import com.ferosburn.databencana.utils.disasterNameToDisasterTypes
+&nbsp;import com.ferosburn.databencana.utils.provinceNameToProvinces
+&nbsp;import com.ferosburn.databencana.utils.setInputError
+&nbsp;import java.text.SimpleDateFormat
+&nbsp;import java.time.LocalDate
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;import java.util.Calendar
+&nbsp;import java.util.Date
+&nbsp;import java.util.Locale
+&nbsp;
+<b class="nc">&nbsp;class FilterFragment : Fragment() {</b>
+&nbsp;    private var _binding: FragmentFilterBinding? = null
+<b class="nc">&nbsp;    private val binding get() = _binding!!</b>
+<b class="nc">&nbsp;    private var calendar = Calendar.getInstance()</b>
+&nbsp;
+&nbsp;    override fun onCreateView(
+&nbsp;        inflater: LayoutInflater,
+&nbsp;        container: ViewGroup?,
+&nbsp;        savedInstanceState: Bundle?
+&nbsp;    ): View {
+<b class="nc">&nbsp;        _binding = FragmentFilterBinding.inflate(inflater, container, false)</b>
+<b class="nc">&nbsp;        return binding.root</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        binding.initBinding()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun FragmentFilterBinding.initBinding() {
+<b class="nc">&nbsp;        btnFilter.setOnClickListener {</b>
+<b class="nc">&nbsp;            val disasterTypes =</b>
+<b class="nc">&nbsp;                if (disasterTypeAutocomplete.text.toString() == DisasterTypes.ALL.disasterName) {</b>
+<b class="nc">&nbsp;                    null</b>
+&nbsp;                } else {
+<b class="nc">&nbsp;                    disasterTypeAutocomplete.text.toString()</b>
+<b class="nc">&nbsp;                        .disasterNameToDisasterTypes()?.disasterValue</b>
+&nbsp;                }
+<b class="nc">&nbsp;            val bundle = bundleOf(</b>
+<b class="nc">&nbsp;                KeyConstant.DISASTER_TYPE_FILTER to disasterTypes,</b>
+<b class="nc">&nbsp;                KeyConstant.START_DATE_FILTER to inputStartTime.text.toString(),</b>
+<b class="nc">&nbsp;                KeyConstant.END_DATE_FILTER to inputEndTime.text.toString(),</b>
+<b class="nc">&nbsp;                KeyConstant.PROVINCE_FILTER to inputRegion.text.toString()</b>
+<b class="nc">&nbsp;                    .provinceNameToProvinces()?.code</b>
+&nbsp;            )
+<b class="nc">&nbsp;            if (isFilterValid()) {</b>
+<b class="nc">&nbsp;                findNavController().navigate(R.id.action_filterFragment_to_nav_home, bundle)</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        // set adapter for disaster type dropdown menu
+<b class="nc">&nbsp;        val disasterAdapter = ArrayAdapter(</b>
+<b class="nc">&nbsp;            requireContext(),</b>
+<b class="nc">&nbsp;            android.R.layout.simple_dropdown_item_1line,</b>
+<b class="nc">&nbsp;            setOfDisasterTypes().map { it.disasterName })</b>
+<b class="nc">&nbsp;        (disasterType.editText as AutoCompleteTextView).setAdapter(disasterAdapter)</b>
+<b class="nc">&nbsp;        disasterTypeAutocomplete.setText(DisasterTypes.ALL.disasterName, false)</b>
+&nbsp;
+&nbsp;        // set adapter for province autocomplete text input
+<b class="nc">&nbsp;        val provinceAdapter = ArrayAdapter(</b>
+<b class="nc">&nbsp;            requireContext(),</b>
+<b class="nc">&nbsp;            android.R.layout.simple_dropdown_item_1line,</b>
+<b class="nc">&nbsp;            setOfProvinces().map { it.provinceName })</b>
+<b class="nc">&nbsp;        (inputLayoutRegion.editText as AutoCompleteTextView).setAdapter(provinceAdapter)</b>
+&nbsp;
+<b class="nc">&nbsp;        inputLayoutStartTime.setEndIconOnClickListener {</b>
+<b class="nc">&nbsp;            showDatePickerDialog(inputStartTime)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        inputLayoutEndTime.setEndIconOnClickListener {</b>
+<b class="nc">&nbsp;            showDatePickerDialog(inputEndTime)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        inputRegion.doBeforeTextChanged { _, _, _, _ -&gt;</b>
+&nbsp;            inputLayoutRegion.isErrorEnabled = false
+&nbsp;        }
+<b class="nc">&nbsp;        inputStartTime.doBeforeTextChanged { _, _, _, _ -&gt;</b>
+&nbsp;            inputLayoutStartTime.isErrorEnabled = false
+&nbsp;        }
+<b class="nc">&nbsp;        inputEndTime.doBeforeTextChanged { _, _, _, _ -&gt;</b>
+&nbsp;            inputLayoutEndTime.isErrorEnabled = false
+&nbsp;        }
+<b class="nc">&nbsp;        activity?.onBackPressedDispatcher?.addCallback(</b>
+<b class="nc">&nbsp;            viewLifecycleOwner,</b>
+<b class="nc">&nbsp;            object : OnBackPressedCallback(true) {</b>
+&nbsp;                override fun handleOnBackPressed() {
+<b class="nc">&nbsp;                    findNavController().navigate(R.id.action_filterFragment_to_nav_home)</b>
+&nbsp;                }
+&nbsp;            })
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun showDatePickerDialog(view: EditText) {
+<b class="nc">&nbsp;        val dateSetListener =</b>
+&nbsp;            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth -&gt;
+<b class="nc">&nbsp;                calendar.set(Calendar.YEAR, year)</b>
+<b class="nc">&nbsp;                calendar.set(Calendar.MONTH, monthOfYear)</b>
+<b class="nc">&nbsp;                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)</b>
+<b class="nc">&nbsp;                updateDateInView(view)</b>
+&nbsp;            }
+<b class="nc">&nbsp;        DatePickerDialog(</b>
+<b class="nc">&nbsp;            requireContext(),</b>
+<b class="nc">&nbsp;            dateSetListener,</b>
+<b class="nc">&nbsp;            calendar.get(Calendar.YEAR),</b>
+<b class="nc">&nbsp;            calendar.get(Calendar.MONTH),</b>
+<b class="nc">&nbsp;            calendar.get(Calendar.DAY_OF_MONTH),</b>
+<b class="nc">&nbsp;        ).apply {</b>
+<b class="nc">&nbsp;            if (view == binding.inputStartTime) {</b>
+<b class="nc">&nbsp;                datePicker.maxDate = Date().time - MILIS_LONG_ONE_DAY</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                datePicker.maxDate = Date().time</b>
+&nbsp;            }
+<b class="nc">&nbsp;            show()</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun updateDateInView(view: EditText) {
+<b class="nc">&nbsp;        view.setText(SimpleDateFormat(&quot;dd-MM-yyyy&quot;, Locale.UK).format(calendar.time))</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun FragmentFilterBinding.isFilterValid(): Boolean {
+<b class="nc">&nbsp;        if (inputRegion.text.isNotBlank() &amp;&amp; inputRegion.text.toString()</b>
+<b class="nc">&nbsp;                .provinceNameToProvinces() == null</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            inputLayoutRegion.setInputError(getString(R.string.province_is_not_found))</b>
+<b class="nc">&nbsp;            return false</b>
+<b class="nc">&nbsp;        } else if (inputStartTime.text.toString().isNotBlank() xor inputEndTime.text.toString()</b>
+<b class="nc">&nbsp;                .isNotBlank()</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            if (inputStartTime.text.isNullOrBlank()) {</b>
+<b class="nc">&nbsp;                inputLayoutStartTime.setInputError(getString(R.string.start_date_should_not_be_empty))</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (inputEndTime.text.isNullOrBlank()) {</b>
+<b class="nc">&nbsp;                inputLayoutEndTime.setInputError(getString(R.string.end_date_should_not_be_empty))</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return false</b>
+<b class="nc">&nbsp;        } else if (inputStartTime.text.toString().isNotBlank() &amp;&amp; inputEndTime.text.toString()</b>
+<b class="nc">&nbsp;                .isNotBlank()</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            if (LocalDate.parse(</b>
+<b class="nc">&nbsp;                    inputEndTime.text.toString(),</b>
+<b class="nc">&nbsp;                    DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;                ) &gt; LocalDate.now()</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                inputLayoutEndTime.setInputError(getString(R.string.end_date_should_not_be_bigger_than_today))</b>
+<b class="nc">&nbsp;                return false</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (LocalDate.parse(</b>
+<b class="nc">&nbsp;                    inputStartTime.text.toString(),</b>
+<b class="nc">&nbsp;                    DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;                ) &gt; LocalDate.parse(</b>
+<b class="nc">&nbsp;                    inputEndTime.text.toString(),</b>
+<b class="nc">&nbsp;                    DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;)</b>
+&nbsp;                )
+&nbsp;            ) {
+<b class="nc">&nbsp;                inputLayoutStartTime.setInputError(getString(R.string.start_date_should_not_be_bigger_than_end_date))</b>
+<b class="nc">&nbsp;                return false</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if ((LocalDate.parse(</b>
+<b class="nc">&nbsp;                    inputEndTime.text.toString(),</b>
+<b class="nc">&nbsp;                    DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;                ).toEpochDay() - LocalDate.parse(</b>
+<b class="nc">&nbsp;                    inputStartTime.text.toString(),</b>
+<b class="nc">&nbsp;                    DateTimeFormatter.ofPattern(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;                ).toEpochDay()) * 60 * 60 * 24 &gt;= 18748800</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                inputLayoutStartTime.setInputError(getString(R.string.time_difference_not_more_than_217_days))</b>
+<b class="nc">&nbsp;                return false</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return true</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onDestroyView() {
+<b class="nc">&nbsp;        super.onDestroyView()</b>
+<b class="nc">&nbsp;        _binding = null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun setOfDisasterTypes(): Set&lt;DisasterTypes&gt; {
+<b class="nc">&nbsp;        return setOf(</b>
+<b class="nc">&nbsp;            DisasterTypes.ALL,</b>
+<b class="nc">&nbsp;            DisasterTypes.FLOOD,</b>
+<b class="nc">&nbsp;            DisasterTypes.EARTHQUAKE,</b>
+<b class="nc">&nbsp;            DisasterTypes.FIRE,</b>
+<b class="nc">&nbsp;            DisasterTypes.HAZE,</b>
+<b class="nc">&nbsp;            DisasterTypes.WIND,</b>
+<b class="nc">&nbsp;            DisasterTypes.VOLCANO,</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun setOfProvinces(): Set&lt;Provinces&gt; {
+<b class="nc">&nbsp;        return setOf(</b>
+<b class="nc">&nbsp;            Provinces.ACEH,</b>
+<b class="nc">&nbsp;            Provinces.BALI,</b>
+<b class="nc">&nbsp;            Provinces.BANGKABELITUNG,</b>
+<b class="nc">&nbsp;            Provinces.BANTEN,</b>
+<b class="nc">&nbsp;            Provinces.BENGKULU,</b>
+<b class="nc">&nbsp;            Provinces.GORONTALO,</b>
+<b class="nc">&nbsp;            Provinces.JABAR,</b>
+<b class="nc">&nbsp;            Provinces.JAKARTA,</b>
+<b class="nc">&nbsp;            Provinces.JAMBI,</b>
+<b class="nc">&nbsp;            Provinces.JATENG,</b>
+<b class="nc">&nbsp;            Provinces.JATIM,</b>
+<b class="nc">&nbsp;            Provinces.KALBAR,</b>
+<b class="nc">&nbsp;            Provinces.KALSEL,</b>
+<b class="nc">&nbsp;            Provinces.KALTARA,</b>
+<b class="nc">&nbsp;            Provinces.KALTENG,</b>
+<b class="nc">&nbsp;            Provinces.KALTIM,</b>
+<b class="nc">&nbsp;            Provinces.KEPRI,</b>
+<b class="nc">&nbsp;            Provinces.LAMPUNG,</b>
+<b class="nc">&nbsp;            Provinces.MALUKU,</b>
+<b class="nc">&nbsp;            Provinces.MALUT,</b>
+<b class="nc">&nbsp;            Provinces.NTB,</b>
+<b class="nc">&nbsp;            Provinces.NTT,</b>
+<b class="nc">&nbsp;            Provinces.PABAR,</b>
+<b class="nc">&nbsp;            Provinces.PAPUA,</b>
+<b class="nc">&nbsp;            Provinces.RIAU,</b>
+<b class="nc">&nbsp;            Provinces.SULBAR,</b>
+<b class="nc">&nbsp;            Provinces.SULSEL,</b>
+<b class="nc">&nbsp;            Provinces.SULTENG,</b>
+<b class="nc">&nbsp;            Provinces.SULTRA,</b>
+<b class="nc">&nbsp;            Provinces.SULUT,</b>
+<b class="nc">&nbsp;            Provinces.SUMBAR,</b>
+<b class="nc">&nbsp;            Provinces.SUMSEL,</b>
+<b class="nc">&nbsp;            Provinces.SUMUT,</b>
+<b class="nc">&nbsp;            Provinces.YOGYA,</b>
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    companion object {</b>
+&nbsp;        const val MILIS_LONG_ONE_DAY = 86400000L
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DatabaseModule_ProvideDisasterDaoFactory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.di</a>
+</div>
+
+<h1>Coverage Summary for Class: DatabaseModule_ProvideDisasterDaoFactory (com.ferosburn.databencana.di)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">DatabaseModule_ProvideDisasterDaoFactory</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.di;
+&nbsp;
+&nbsp;import com.ferosburn.databencana.data.source.local.DisasterDao;
+&nbsp;import com.ferosburn.databencana.data.source.local.DisasterDatabase;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.Factory;
+&nbsp;import dagger.internal.Preconditions;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import dagger.internal.ScopeMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@ScopeMetadata
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class DatabaseModule_ProvideDisasterDaoFactory implements Factory&lt;DisasterDao&gt; {
+&nbsp;  private final DatabaseModule module;
+&nbsp;
+&nbsp;  private final Provider&lt;DisasterDatabase&gt; databaseProvider;
+&nbsp;
+&nbsp;  public DatabaseModule_ProvideDisasterDaoFactory(DatabaseModule module,
+&nbsp;      Provider&lt;DisasterDatabase&gt; databaseProvider) {
+&nbsp;    this.module = module;
+&nbsp;    this.databaseProvider = databaseProvider;
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public DisasterDao get() {
+&nbsp;    return provideDisasterDao(module, databaseProvider.get());
+&nbsp;  }
+&nbsp;
+&nbsp;  public static DatabaseModule_ProvideDisasterDaoFactory create(DatabaseModule module,
+&nbsp;      Provider&lt;DisasterDatabase&gt; databaseProvider) {
+&nbsp;    return new DatabaseModule_ProvideDisasterDaoFactory(module, databaseProvider);
+&nbsp;  }
+&nbsp;
+&nbsp;  public static DisasterDao provideDisasterDao(DatabaseModule instance, DisasterDatabase database) {
+&nbsp;    return Preconditions.checkNotNullFromProvides(instance.provideDisasterDao(database));
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

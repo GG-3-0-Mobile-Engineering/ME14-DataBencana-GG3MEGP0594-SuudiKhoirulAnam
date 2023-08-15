@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DataMapper</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.utils</a>
+</div>
+
+<h1>Coverage Summary for Class: DataMapper (com.ferosburn.databencana.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DataMapper</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.utils
+&nbsp;
+&nbsp;import com.ferosburn.databencana.data.source.local.DisasterEntity
+&nbsp;import com.ferosburn.databencana.data.source.remote.GeometryReport
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterModel
+&nbsp;
+&nbsp;object DataMapper {
+&nbsp;
+&nbsp;    fun mapResponseToEntities(input: List&lt;GeometryReport&gt;): List&lt;DisasterEntity&gt; {
+<b class="fc">&nbsp;        val disasterList = ArrayList&lt;DisasterEntity&gt;()</b>
+<b class="fc">&nbsp;        input.map {</b>
+<b class="fc">&nbsp;            val disaster = DisasterEntity(</b>
+<b class="fc">&nbsp;                pkey = it.properties.pkey.toInt(),</b>
+<b class="fc">&nbsp;                createdAt = it.properties.createdAt,</b>
+<b class="fc">&nbsp;                imageUrl = it.properties.imageUrl,</b>
+<b class="fc">&nbsp;                disasterType = it.properties.disasterType,</b>
+<b class="fc">&nbsp;                instanceRegionCode = it.properties.propertyTags.instanceRegionCode,</b>
+<b class="fc">&nbsp;                longitude = it.coordinates[0],</b>
+<b class="fc">&nbsp;                latitude = it.coordinates[1]</b>
+&nbsp;            )
+<b class="fc">&nbsp;            disasterList.add(disaster)</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return disasterList</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun mapEntitiesToDomain(input: List&lt;DisasterEntity&gt;): List&lt;DisasterModel&gt; =
+<b class="fc">&nbsp;        input.map {</b>
+<b class="fc">&nbsp;            DisasterModel(</b>
+<b class="fc">&nbsp;                pkey = it.pkey,</b>
+<b class="fc">&nbsp;                createdAt = it.createdAt,</b>
+<b class="fc">&nbsp;                imageUrl = it.imageUrl,</b>
+<b class="fc">&nbsp;                disasterType = it.disasterType,</b>
+<b class="fc">&nbsp;                instanceRegionCode = it.instanceRegionCode,</b>
+<b class="fc">&nbsp;                longitude = it.longitude,</b>
+<b class="fc">&nbsp;                latitude = it.latitude</b>
+&nbsp;            )
+&nbsp;        }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

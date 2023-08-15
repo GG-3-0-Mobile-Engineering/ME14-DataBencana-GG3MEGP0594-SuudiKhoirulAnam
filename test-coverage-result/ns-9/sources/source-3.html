@@ -1,0 +1,527 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HomeFragment</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.presentation.home</a>
+</div>
+
+<h1>Coverage Summary for Class: HomeFragment (com.ferosburn.databencana.presentation.home)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HomeFragment</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/97)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HomeFragment$Companion</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$getRecentReports$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$getReports$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$onViewCreated$3$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$sam$androidx_lifecycle_Observer$0</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$viewModels$default$4</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HomeFragment$special$$inlined$viewModels$default$5</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/148)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.presentation.home
+&nbsp;
+&nbsp;import android.annotation.SuppressLint
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.LayoutInflater
+&nbsp;import android.view.View
+&nbsp;import android.view.ViewGroup
+&nbsp;import android.widget.Toast
+&nbsp;import androidx.fragment.app.Fragment
+&nbsp;import androidx.fragment.app.viewModels
+&nbsp;import androidx.navigation.fragment.findNavController
+&nbsp;import androidx.recyclerview.widget.LinearLayoutManager
+&nbsp;import com.ferosburn.databencana.R
+&nbsp;import com.ferosburn.databencana.data.Resource
+&nbsp;import com.ferosburn.databencana.databinding.FragmentHomeBinding
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterModel
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterTypes
+&nbsp;import com.ferosburn.databencana.utils.KeyConstant
+&nbsp;import com.ferosburn.databencana.utils.disasterValueToDisasterTypes
+&nbsp;import com.ferosburn.databencana.utils.localDateToFormattedDateTime
+&nbsp;import com.ferosburn.databencana.utils.provinceCodeToProvinces
+&nbsp;import com.google.android.material.bottomsheet.BottomSheetBehavior
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;import org.osmdroid.api.IMapController
+&nbsp;import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+&nbsp;import org.osmdroid.util.BoundingBox
+&nbsp;import org.osmdroid.util.GeoPoint
+&nbsp;import org.osmdroid.views.MapView
+&nbsp;import org.osmdroid.views.overlay.Marker
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class HomeFragment : Fragment() {</b>
+&nbsp;    private var _binding: FragmentHomeBinding? = null
+<b class="nc">&nbsp;    private val binding get() = _binding!!</b>
+&nbsp;    private lateinit var map: MapView
+&nbsp;    private lateinit var mapController: IMapController
+<b class="nc">&nbsp;    private val disasterListAdapter: DisasterListAdapter = DisasterListAdapter()</b>
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: HomeViewModel by viewModels()</b>
+&nbsp;
+&nbsp;    override fun onCreateView(
+&nbsp;        inflater: LayoutInflater,
+&nbsp;        container: ViewGroup?,
+&nbsp;        savedInstanceState: Bundle?
+&nbsp;    ): View {
+<b class="nc">&nbsp;        _binding = FragmentHomeBinding.inflate(inflater, container, false)</b>
+<b class="nc">&nbsp;        return binding.root</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        val disasterType = arguments?.getString(KeyConstant.DISASTER_TYPE_FILTER)</b>
+<b class="nc">&nbsp;        val startDate = arguments?.getString(KeyConstant.START_DATE_FILTER)</b>
+<b class="nc">&nbsp;            ?.localDateToFormattedDateTime(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;        val endDate = arguments?.getString(KeyConstant.END_DATE_FILTER)</b>
+<b class="nc">&nbsp;            ?.localDateToFormattedDateTime(&quot;dd-MM-yyyy&quot;)</b>
+<b class="nc">&nbsp;        val province = arguments?.getString(KeyConstant.PROVINCE_FILTER)</b>
+<b class="nc">&nbsp;        initMap()</b>
+<b class="nc">&nbsp;        binding.apply {</b>
+<b class="nc">&nbsp;            initAdapter()</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        binding.tvFilter.setOnClickListener {</b>
+<b class="nc">&nbsp;            findNavController().navigate(R.id.action_nav_home_to_filterFragment)</b>
+&nbsp;        }
+<b class="nc">&nbsp;        BottomSheetBehavior.from(binding.disasterListBottomSheet.root)</b>
+<b class="nc">&nbsp;            .apply {</b>
+<b class="nc">&nbsp;                peekHeight = 0</b>
+<b class="nc">&nbsp;                this.state = BottomSheetBehavior.STATE_HIDDEN</b>
+<b class="nc">&nbsp;                addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {</b>
+&nbsp;                    override fun onStateChanged(bottomSheet: View, newState: Int) {
+<b class="nc">&nbsp;                        when (state) {</b>
+&nbsp;                            BottomSheetBehavior.STATE_COLLAPSED -&gt; {
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 24f</b>
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.tvTitle.visibility = View.GONE</b>
+<b class="nc">&nbsp;                                binding.cvFilter.visibility = View.VISIBLE</b>
+&nbsp;                            }
+&nbsp;                            BottomSheetBehavior.STATE_DRAGGING -&gt; {
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 24f</b>
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.tvTitle.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;                                binding.cvFilter.visibility = View.VISIBLE</b>
+&nbsp;                            }
+&nbsp;                            BottomSheetBehavior.STATE_EXPANDED -&gt; {
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.layoutDisasterListBottomSheet.radius = 0f</b>
+<b class="nc">&nbsp;                                binding.disasterListBottomSheet.tvTitle.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;                                binding.cvFilter.visibility = View.GONE</b>
+&nbsp;                            }
+&nbsp;                            else -&gt; return
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;
+<b class="nc">&nbsp;                    override fun onSlide(bottomSheet: View, slideOffset: Float) {}</b>
+&nbsp;                })
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        if (!disasterType.isNullOrBlank() || (!startDate.isNullOrBlank() &amp;&amp; !endDate.isNullOrBlank()) || !province.isNullOrBlank()) {</b>
+<b class="nc">&nbsp;            if (startDate.isNullOrBlank() || endDate.isNullOrBlank()) {</b>
+<b class="nc">&nbsp;                getRecentReports(DAY_TIME_PERIOD * 2, province, disasterType)</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                getReports(startDate, endDate, province, disasterType)</b>
+&nbsp;            }
+&nbsp;        } else {
+<b class="nc">&nbsp;            getRecentReports(DAY_TIME_PERIOD * 2)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun initMap() {
+<b class="nc">&nbsp;        map = binding.mapView</b>
+<b class="nc">&nbsp;        mapController = map.controller</b>
+<b class="nc">&nbsp;        map.apply {</b>
+<b class="nc">&nbsp;            setTileSource(TileSourceFactory.OpenTopo)</b>
+<b class="nc">&nbsp;            setMultiTouchControls(true)</b>
+&nbsp;            @Suppress(&quot;DEPRECATION&quot;)
+<b class="nc">&nbsp;            (setBuiltInZoomControls(false))</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        mapController.setCenter(GeoPoint(DEFAULT_LATITUDE, DEFAULT_LONGITUDE))</b>
+<b class="nc">&nbsp;        mapController.setZoom(DEFAULT_ZOOM_LEVEL)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun FragmentHomeBinding.initAdapter() {
+<b class="nc">&nbsp;        disasterListBottomSheet.rvListDisaster.adapter = disasterListAdapter</b>
+<b class="nc">&nbsp;        disasterListBottomSheet.rvListDisaster.layoutManager =</b>
+<b class="nc">&nbsp;            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onResume() {
+<b class="nc">&nbsp;        super.onResume()</b>
+<b class="nc">&nbsp;        map.onResume()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onPause() {
+<b class="nc">&nbsp;        super.onPause()</b>
+<b class="nc">&nbsp;        map.onPause()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    override fun onDestroyView() {
+<b class="nc">&nbsp;        super.onDestroyView()</b>
+<b class="nc">&nbsp;        _binding = null</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun getRecentReports(
+&nbsp;        timePeriod: Int,
+<b class="nc">&nbsp;        provinceCode: String? = null,</b>
+<b class="nc">&nbsp;        disasterValue: String? = null</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        viewModel.getRecentReports(timePeriod, provinceCode, disasterValue)</b>
+<b class="nc">&nbsp;            .observe(viewLifecycleOwner) { disasters -&gt;</b>
+<b class="nc">&nbsp;                if (disasters != null) {</b>
+<b class="nc">&nbsp;                    when (disasters) {</b>
+<b class="nc">&nbsp;                        is Resource.Loading -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.VISIBLE</b>
+&nbsp;                        }
+&nbsp;
+<b class="nc">&nbsp;                        is Resource.Error -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.GONE</b>
+<b class="nc">&nbsp;                            Toast.makeText(context, &quot;Ada Kesalahan&quot;, Toast.LENGTH_LONG)</b>
+<b class="nc">&nbsp;                                .show()</b>
+&nbsp;                        }
+&nbsp;
+<b class="nc">&nbsp;                        is Resource.Success -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.GONE</b>
+<b class="nc">&nbsp;                            val list = disasters.data</b>
+<b class="nc">&nbsp;                            if (list.isNullOrEmpty()) {</b>
+<b class="nc">&nbsp;                                Toast.makeText(context, &quot;Tidak Ada Data&quot;, Toast.LENGTH_SHORT)</b>
+<b class="nc">&nbsp;                                    .show()</b>
+&nbsp;                                return@observe
+&nbsp;                            }
+<b class="nc">&nbsp;                            map.overlays.clear()</b>
+<b class="nc">&nbsp;                            disasterListAdapter.submitList(list)</b>
+<b class="nc">&nbsp;                            showMapMarkers(list)</b>
+<b class="nc">&nbsp;                            showDisasterBottomSheet(list)</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun getReports(
+&nbsp;        startTime: String,
+&nbsp;        endTime: String,
+<b class="nc">&nbsp;        provinceCode: String? = null,</b>
+<b class="nc">&nbsp;        disasterValue: String? = null</b>
+&nbsp;    ) {
+<b class="nc">&nbsp;        viewModel.getReports(startTime, endTime, provinceCode)</b>
+<b class="nc">&nbsp;            .observe(viewLifecycleOwner) { disasters -&gt;</b>
+<b class="nc">&nbsp;                if (disasters != null) {</b>
+<b class="nc">&nbsp;                    when (disasters) {</b>
+<b class="nc">&nbsp;                        is Resource.Loading -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.VISIBLE</b>
+&nbsp;                        }
+&nbsp;
+<b class="nc">&nbsp;                        is Resource.Error -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.GONE</b>
+<b class="nc">&nbsp;                            Toast.makeText(context, &quot;Ada Kesalahan&quot;, Toast.LENGTH_LONG)</b>
+<b class="nc">&nbsp;                                .show()</b>
+&nbsp;                        }
+&nbsp;
+<b class="nc">&nbsp;                        is Resource.Success -&gt; {</b>
+<b class="nc">&nbsp;                            binding.loadingOverlay.visibility = View.GONE</b>
+<b class="nc">&nbsp;                            val list = if (disasterValue.isNullOrBlank()) {</b>
+<b class="nc">&nbsp;                                disasters.data</b>
+&nbsp;                            } else {
+<b class="nc">&nbsp;                                disasters.data?.filter { item -&gt; item.disasterType == disasterValue }</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            if (list.isNullOrEmpty()) {</b>
+<b class="nc">&nbsp;                                Toast.makeText(context, &quot;Tidak Ada Data&quot;, Toast.LENGTH_SHORT)</b>
+<b class="nc">&nbsp;                                    .show()</b>
+&nbsp;                                return@observe
+&nbsp;                            }
+<b class="nc">&nbsp;                            map.overlays.clear()</b>
+<b class="nc">&nbsp;                            disasterListAdapter.submitList(list)</b>
+<b class="nc">&nbsp;                            showMapMarkers(list)</b>
+<b class="nc">&nbsp;                            showDisasterBottomSheet(list)</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;    @SuppressLint(&quot;UseCompatLoadingForDrawables&quot;)
+&nbsp;    private fun showMapMarkers(data: List&lt;DisasterModel&gt;) {
+<b class="nc">&nbsp;        if (data.isNotEmpty()) {</b>
+<b class="nc">&nbsp;            with(data) {</b>
+<b class="nc">&nbsp;                val north = this.maxBy { it.latitude }.latitude + 1</b>
+<b class="nc">&nbsp;                val east = this.maxBy { it.longitude }.longitude + 1</b>
+<b class="nc">&nbsp;                val south = this.minBy { it.latitude }.latitude - 1</b>
+<b class="nc">&nbsp;                val west = this.minBy { it.longitude }.longitude - 1</b>
+<b class="nc">&nbsp;                val b = BoundingBox(north, east, south, west)</b>
+<b class="nc">&nbsp;                map.zoomToBoundingBox(b, true)</b>
+<b class="nc">&nbsp;                this.map { itemDisaster -&gt;</b>
+<b class="nc">&nbsp;                    val marker = Marker(map)</b>
+<b class="nc">&nbsp;                    marker.position =</b>
+<b class="nc">&nbsp;                        GeoPoint(</b>
+<b class="nc">&nbsp;                            itemDisaster.latitude,</b>
+<b class="nc">&nbsp;                            itemDisaster.longitude</b>
+&nbsp;                        )
+<b class="nc">&nbsp;                    marker.icon = context?.getDrawable(getDisasterIcon(itemDisaster.disasterType))</b>
+<b class="nc">&nbsp;                    marker.title =</b>
+<b class="nc">&nbsp;                        &quot;${itemDisaster.disasterType.disasterValueToDisasterTypes()?.disasterName}\n${</b>
+<b class="nc">&nbsp;                            itemDisaster.instanceRegionCode?.provinceCodeToProvinces()?.provinceName</b>
+&nbsp;                        }&quot;
+<b class="nc">&nbsp;                    marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_CENTER)</b>
+<b class="nc">&nbsp;                    map.overlays.add(marker)</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        map.invalidate()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun showDisasterBottomSheet(data: List&lt;DisasterModel&gt;) {
+<b class="nc">&nbsp;        if (data.isEmpty()) {</b>
+<b class="nc">&nbsp;            Toast.makeText(context, &quot;Tidak Ada Data&quot;, Toast.LENGTH_SHORT)</b>
+<b class="nc">&nbsp;                .show()</b>
+<b class="nc">&nbsp;            BottomSheetBehavior.from(binding.disasterListBottomSheet.root)</b>
+<b class="nc">&nbsp;                .apply {</b>
+<b class="nc">&nbsp;                    peekHeight = 0</b>
+<b class="nc">&nbsp;                    this.state = BottomSheetBehavior.STATE_HIDDEN</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            binding.disasterListBottomSheet.layoutDisasterListBottomSheet.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;            BottomSheetBehavior.from(binding.disasterListBottomSheet.root).apply {</b>
+<b class="nc">&nbsp;                peekHeight = 150</b>
+<b class="nc">&nbsp;                this.state = BottomSheetBehavior.STATE_COLLAPSED</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun getDisasterIcon(disasterType: String): Int {
+<b class="nc">&nbsp;        return when (disasterType) {</b>
+<b class="nc">&nbsp;            DisasterTypes.FLOOD.disasterValue -&gt; R.drawable.ic_flood</b>
+<b class="nc">&nbsp;            DisasterTypes.EARTHQUAKE.disasterValue -&gt; R.drawable.ic_earthquake</b>
+<b class="nc">&nbsp;            DisasterTypes.HAZE.disasterValue -&gt; R.drawable.ic_haze</b>
+<b class="nc">&nbsp;            DisasterTypes.FIRE.disasterValue -&gt; R.drawable.ic_fire</b>
+<b class="nc">&nbsp;            DisasterTypes.WIND.disasterValue -&gt; R.drawable.ic_wind</b>
+<b class="nc">&nbsp;            DisasterTypes.VOLCANO.disasterValue -&gt; R.drawable.ic_volcano</b>
+<b class="nc">&nbsp;            else -&gt; R.drawable.ic_disaster</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    companion object {</b>
+&nbsp;        const val DAY_TIME_PERIOD = 86400
+&nbsp;        const val DEFAULT_LATITUDE: Double = -2.483383
+&nbsp;        const val DEFAULT_LONGITUDE: Double = 117.890285
+&nbsp;        const val DEFAULT_ZOOM_LEVEL: Double = 5.0
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

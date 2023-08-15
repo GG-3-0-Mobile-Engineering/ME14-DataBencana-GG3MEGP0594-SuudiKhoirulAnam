@@ -1,0 +1,111 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DisasterInteractor_Factory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.domain.usecase</a>
+</div>
+
+<h1>Coverage Summary for Class: DisasterInteractor_Factory (com.ferosburn.databencana.domain.usecase)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">DisasterInteractor_Factory</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.domain.usecase;
+&nbsp;
+&nbsp;import com.ferosburn.databencana.domain.repository.IDisasterRepository;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.Factory;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import dagger.internal.ScopeMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@ScopeMetadata
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class DisasterInteractor_Factory implements Factory&lt;DisasterInteractor&gt; {
+&nbsp;  private final Provider&lt;IDisasterRepository&gt; disasterRepositoryProvider;
+&nbsp;
+&nbsp;  public DisasterInteractor_Factory(Provider&lt;IDisasterRepository&gt; disasterRepositoryProvider) {
+&nbsp;    this.disasterRepositoryProvider = disasterRepositoryProvider;
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public DisasterInteractor get() {
+&nbsp;    return newInstance(disasterRepositoryProvider.get());
+&nbsp;  }
+&nbsp;
+&nbsp;  public static DisasterInteractor_Factory create(
+&nbsp;      Provider&lt;IDisasterRepository&gt; disasterRepositoryProvider) {
+&nbsp;    return new DisasterInteractor_Factory(disasterRepositoryProvider);
+&nbsp;  }
+&nbsp;
+&nbsp;  public static DisasterInteractor newInstance(IDisasterRepository disasterRepository) {
+&nbsp;    return new DisasterInteractor(disasterRepository);
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

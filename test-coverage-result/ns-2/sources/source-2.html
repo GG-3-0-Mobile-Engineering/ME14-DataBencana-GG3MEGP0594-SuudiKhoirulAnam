@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > NetworkBoundResource</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.data</a>
+</div>
+
+<h1>Coverage Summary for Class: NetworkBoundResource (com.ferosburn.databencana.data)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NetworkBoundResource</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (9/15)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$1</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$1$2</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$1$2$1</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$2$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$2$2$1</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$3$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">NetworkBoundResource$result$1$invokeSuspend$$inlined$map$3$2$1</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    30%
+  </span>
+  <span class="absValue">
+    (3/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    63.2%
+  </span>
+  <span class="absValue">
+    (12/19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.data
+&nbsp;
+&nbsp;import com.ferosburn.databencana.data.source.remote.ReportResponse
+&nbsp;import kotlinx.coroutines.flow.Flow
+&nbsp;import kotlinx.coroutines.flow.emitAll
+&nbsp;import kotlinx.coroutines.flow.first
+&nbsp;import kotlinx.coroutines.flow.flow
+&nbsp;import kotlinx.coroutines.flow.map
+&nbsp;
+<b class="fc">&nbsp;abstract class NetworkBoundResource&lt;ResultType, RequestType&gt; {</b>
+<b class="fc">&nbsp;    private var result: Flow&lt;Resource&lt;ResultType&gt;&gt; = flow {</b>
+<b class="fc">&nbsp;        emit(Resource.Loading())</b>
+<b class="fc">&nbsp;        val dbSource = loadFromDB().first()</b>
+<b class="fc">&nbsp;        if (shouldFetch(dbSource)) {</b>
+<b class="fc">&nbsp;            emit(Resource.Loading())</b>
+<b class="fc">&nbsp;            when (val reportResponse = createCall().first()) {</b>
+<b class="fc">&nbsp;                is ReportResponse.Success -&gt; {</b>
+<b class="fc">&nbsp;                    saveCallResult(reportResponse.data)</b>
+<b class="fc">&nbsp;                    emitAll(loadFromDB().map { Resource.Success(it) })</b>
+&nbsp;                }
+<b class="nc">&nbsp;                is ReportResponse.Empty -&gt; {</b>
+<b class="nc">&nbsp;                    emitAll(loadFromDB().map { Resource.Success(it) })</b>
+&nbsp;                }
+<b class="nc">&nbsp;                is ReportResponse.Error -&gt; {</b>
+<b class="nc">&nbsp;                    onFetchFailed()</b>
+<b class="nc">&nbsp;                    emit(Resource.Error&lt;ResultType&gt;(reportResponse.errorMessage))</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;        } else {
+<b class="nc">&nbsp;            emitAll(loadFromDB().map { Resource.Success(it) })</b>
+&nbsp;        }
+&nbsp;    }
+<b class="nc">&nbsp;    protected open fun onFetchFailed() {}</b>
+&nbsp;
+&nbsp;    protected abstract fun loadFromDB(): Flow&lt;ResultType&gt;
+&nbsp;
+&nbsp;    protected abstract fun shouldFetch(data: ResultType?): Boolean
+&nbsp;
+&nbsp;    protected abstract suspend fun createCall(): Flow&lt;ReportResponse&lt;RequestType&gt;&gt;
+&nbsp;
+&nbsp;    protected abstract suspend fun saveCallResult(data: RequestType)
+&nbsp;
+<b class="fc">&nbsp;    fun asFlow() : Flow&lt;Resource&lt;ResultType&gt;&gt; = result</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

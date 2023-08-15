@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LocalDataSource_Factory</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.data.source.local</a>
+</div>
+
+<h1>Coverage Summary for Class: LocalDataSource_Factory (com.ferosburn.databencana.data.source.local)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">LocalDataSource_Factory</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.data.source.local;
+&nbsp;
+&nbsp;import dagger.internal.DaggerGenerated;
+&nbsp;import dagger.internal.Factory;
+&nbsp;import dagger.internal.QualifierMetadata;
+&nbsp;import dagger.internal.ScopeMetadata;
+&nbsp;import javax.annotation.processing.Generated;
+&nbsp;import javax.inject.Provider;
+&nbsp;
+&nbsp;@ScopeMetadata(&quot;javax.inject.Singleton&quot;)
+&nbsp;@QualifierMetadata
+&nbsp;@DaggerGenerated
+&nbsp;@Generated(
+&nbsp;    value = &quot;dagger.internal.codegen.ComponentProcessor&quot;,
+&nbsp;    comments = &quot;https://dagger.dev&quot;
+&nbsp;)
+&nbsp;@SuppressWarnings({
+&nbsp;    &quot;unchecked&quot;,
+&nbsp;    &quot;rawtypes&quot;,
+&nbsp;    &quot;KotlinInternal&quot;,
+&nbsp;    &quot;KotlinInternalInJava&quot;
+&nbsp;})
+&nbsp;public final class LocalDataSource_Factory implements Factory&lt;LocalDataSource&gt; {
+&nbsp;  private final Provider&lt;DisasterDao&gt; disasterDaoProvider;
+&nbsp;
+&nbsp;  public LocalDataSource_Factory(Provider&lt;DisasterDao&gt; disasterDaoProvider) {
+&nbsp;    this.disasterDaoProvider = disasterDaoProvider;
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public LocalDataSource get() {
+&nbsp;    return newInstance(disasterDaoProvider.get());
+&nbsp;  }
+&nbsp;
+&nbsp;  public static LocalDataSource_Factory create(Provider&lt;DisasterDao&gt; disasterDaoProvider) {
+&nbsp;    return new LocalDataSource_Factory(disasterDaoProvider);
+&nbsp;  }
+&nbsp;
+&nbsp;  public static LocalDataSource newInstance(DisasterDao disasterDao) {
+&nbsp;    return new LocalDataSource(disasterDao);
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

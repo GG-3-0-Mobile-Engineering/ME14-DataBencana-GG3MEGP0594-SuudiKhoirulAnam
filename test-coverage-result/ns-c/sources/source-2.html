@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ExtensionsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana.utils</a>
+</div>
+
+<h1>Coverage Summary for Class: ExtensionsKt (com.ferosburn.databencana.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExtensionsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (9/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana.utils
+&nbsp;
+&nbsp;import com.ferosburn.databencana.domain.model.DisasterTypes
+&nbsp;import com.ferosburn.databencana.domain.model.Provinces
+&nbsp;import com.google.android.material.textfield.TextInputLayout
+&nbsp;import java.time.LocalDate
+&nbsp;import java.time.ZoneOffset
+&nbsp;import java.time.format.DateTimeFormatter
+&nbsp;
+&nbsp;fun String.provinceNameToProvinces(): Provinces? {
+<b class="fc">&nbsp;    return Provinces.values().firstOrNull() { it.provinceName == this }</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun String.provinceCodeToProvinces(): Provinces? {
+<b class="fc">&nbsp;    return Provinces.values().firstOrNull() { it.code == this }</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun String.disasterValueToDisasterTypes(): DisasterTypes? {
+<b class="fc">&nbsp;    return DisasterTypes.values().firstOrNull() { it.disasterValue == this }</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun String.disasterNameToDisasterTypes(): DisasterTypes? {
+<b class="fc">&nbsp;    return DisasterTypes.values().firstOrNull() { it.disasterName == this }</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun String.localDateToFormattedDateTime(initialPattern: String): String? {
+<b class="fc">&nbsp;    if (this.isNotBlank()) {</b>
+<b class="fc">&nbsp;        val date = LocalDate.parse(this, DateTimeFormatter.ofPattern(initialPattern))</b>
+<b class="fc">&nbsp;            .atStartOfDay().atOffset(ZoneOffset.UTC)</b>
+<b class="fc">&nbsp;        return date.format(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&#39;T&#39;HH:mm:ssZ&quot;))</b>
+&nbsp;    }
+<b class="fc">&nbsp;    return null</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun TextInputLayout.setInputError(message: String) {
+<b class="nc">&nbsp;    isErrorEnabled = true</b>
+<b class="nc">&nbsp;    error = message</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>

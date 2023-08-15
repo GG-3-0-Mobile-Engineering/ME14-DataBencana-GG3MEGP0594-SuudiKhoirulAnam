@@ -1,0 +1,146 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MainActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.ferosburn.databencana</a>
+</div>
+
+<h1>Coverage Summary for Class: MainActivity (com.ferosburn.databencana)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.ferosburn.databencana
+&nbsp;
+&nbsp;import android.content.Context
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.View
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import androidx.appcompat.app.AppCompatDelegate
+&nbsp;import androidx.navigation.fragment.NavHostFragment
+&nbsp;import androidx.navigation.ui.setupWithNavController
+&nbsp;import com.ferosburn.databencana.databinding.ActivityMainBinding
+&nbsp;import com.ferosburn.databencana.utils.KeyConstant
+&nbsp;import com.google.android.material.bottomnavigation.BottomNavigationView
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;
+&nbsp;@AndroidEntryPoint
+<b class="nc">&nbsp;class MainActivity : AppCompatActivity() {</b>
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        val sharedPreferences = getSharedPreferences(KeyConstant.PREFERENCE, Context.MODE_PRIVATE)</b>
+<b class="nc">&nbsp;        AppCompatDelegate.setDefaultNightMode(sharedPreferences.getInt(KeyConstant.THEME, AppCompatDelegate.MODE_NIGHT_NO))</b>
+&nbsp;
+<b class="nc">&nbsp;        val binding = ActivityMainBinding.inflate(layoutInflater)</b>
+<b class="nc">&nbsp;        setContentView(binding.root)</b>
+&nbsp;
+<b class="nc">&nbsp;        val navView: BottomNavigationView = binding.bottomNav</b>
+&nbsp;
+<b class="nc">&nbsp;        val navHostFragment =</b>
+<b class="nc">&nbsp;            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment</b>
+<b class="nc">&nbsp;        val navController = navHostFragment.navController</b>
+&nbsp;
+&nbsp;        // handle bottom navigation bar visibility
+<b class="nc">&nbsp;        navController.addOnDestinationChangedListener { _, destination, _ -&gt;</b>
+<b class="nc">&nbsp;            when (destination.id) {</b>
+<b class="nc">&nbsp;                R.id.filterFragment -&gt; binding.bottomNav.visibility = View.GONE</b>
+<b class="nc">&nbsp;                else -&gt; binding.bottomNav.visibility = View.VISIBLE</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        navView.setupWithNavController(navController)</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-15 13:45</div>
+</div>
+</body>
+</html>
